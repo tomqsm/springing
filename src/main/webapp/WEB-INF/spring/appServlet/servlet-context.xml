@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:p="http://www.springframework.org/schema/p"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    
+    <annotation-driven />
+    
+    <!--    The mapping attribute defines
+    the URL for mapping to static resources; as an example, for the URL
+    http://localhost:8080/ch17/resources/styles/standard.css-->
+
+    <resources location="/, classpath:/META-INF/web-resources/" mapping="/resources/**"/>
+    
+<!--    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/WEB-INF/views/" />
+        <beans:property name="suffix" value=".jsp" />
+    </beans:bean>-->
+    
+    <context:component-scan base-package="biz.letsweb.lukasfloorspring" />
+    
+    <interceptors>
+        <!--THEMES bean-->
+        <beans:bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor"/>
+        
+        <beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" 
+                    p:paramName="lang"/>
+    </interceptors>
+    
+    <!--THEMES-->
+    
+    <!--ResourceBundleThemeSource class, is responsible for loading the ResourceBundle of the active theme-->
+    <beans:bean class="org.springframework.ui.context.support.ResourceBundleThemeSource" 
+                id="themeSource" p:basenamePrefix="theme1" />
+    <!--CookieThemeResolver class, is used to resolve the active theme for users-->
+    <beans:bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver" 
+                id="localeResolver" p:cookieName="locale" p:defaultLocale="pl" p:cookieMaxAge="3600" />
+    
+    <beans:bean class="org.springframework.web.servlet.theme.CookieThemeResolver"
+                id="themeResolver" 
+                p:cookieName="theme" 
+                p:defaultThemeName="theme1" />
+    
+    <beans:bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+                id="messageSource" 
+                p:basenames="WEB-INF/i18n/messages, WEB-INF/i18n/application, classpath:theme1"
+                p:fallbackToSystemLocale="false" p:defaultEncoding="UTF-8" />
+
+    <!--TILES TEMPLATING-->
+    <!-- Tiles Configuration -->
+    <beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
+        <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+    </beans:bean>
+    <!--<beans:bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>-->
+    <beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
+            id="tilesConfigurer">
+        <beans:property name="definitions">
+            <beans:list>
+                <beans:value>/WEB-INF/layouts/layouts.xml</beans:value>
+                 <!--Scan views directory for Tiles configurations--> 
+                <beans:value>/WEB-INF/views/**/views.xml</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+    
+    <!--    The <default-servlet-handler/> tag enables
+    the mapping of the DispatcherServlet to the web application’s root context URL, while still allowing
+    static resource requests to be handled by the container's default servlet.-->
+    <default-servlet-handler/> 
+</beans:beans>
