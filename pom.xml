@@ -214,6 +214,7 @@
             <version>${tiles.version}</version>
         </dependency>
         
+        <!--to solve loggin problem-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -225,13 +226,25 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>1.7.5</version>
         </dependency>
-        
         <dependency>  
             <groupId>org.slf4j</groupId>  
             <artifactId>slf4j-log4j12</artifactId>  
             <version>1.7.1</version>  
         </dependency>
+        <!--to solve loggin problem-->
         
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.15.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

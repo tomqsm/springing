@@ -5,7 +5,6 @@
 <%@taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <% pageContext.setAttribute("now", new DateTime());%>
-<s:message code="welcome" var="welcome"/>
 <img src="resources/images/logo.png">
 <p><joda:format value="${now}" style="SM" /></p>
 <p>welcome: ${welcome}</p>
