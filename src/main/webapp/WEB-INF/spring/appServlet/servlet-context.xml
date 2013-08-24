@@ -3,11 +3,14 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:p="http://www.springframework.org/schema/p"
+             xmlns:jee="http://www.springframework.org/schema/jee"
              xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation="http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/jee
+http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.1.xsd">
     
@@ -19,7 +22,12 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <resources location="/, classpath:/META-INF/web-resources/" mapping="/resources/**"/>
     
-<!--    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/lukasfloorspring_ds"/>
+    
+    <beans:bean id="usersDao" class="biz.letsweb.lukasfloorspring.JdbcUsersDao"
+                p:dataSource-ref="dataSource" />
+    
+    <!--    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/" />
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>-->
@@ -60,11 +68,11 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
     </beans:bean>
     <!--<beans:bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>-->
     <beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
-            id="tilesConfigurer">
+                id="tilesConfigurer">
         <beans:property name="definitions">
             <beans:list>
                 <beans:value>/WEB-INF/layouts/layouts.xml</beans:value>
-                 <!--Scan views directory for Tiles configurations--> 
+                <!--Scan views directory for Tiles configurations--> 
                 <beans:value>/WEB-INF/views/**/views.xml</beans:value>
             </beans:list>
         </beans:property>

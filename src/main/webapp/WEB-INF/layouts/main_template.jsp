@@ -19,10 +19,10 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${app_css_url}" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=8" />
-        <title>JSP Page</title>
+        <title><t:insertAttribute name="title" flush="false"/></title>
     </head>
     <body>
-        <t:insertAttribute name="header" />
-        <h1>Hello World default template! ${country}</h1>
+        <t:insertAttribute name="header" flush="false"/>
+        <t:insertAttribute name="body" flush="true"/>
     </body>
 </html>

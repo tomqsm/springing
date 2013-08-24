@@ -77,5 +77,12 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
         <servlet-name>appServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    <resource-ref>
+        <description>My DataSource Reference</description>
+        <res-ref-name>${db.jndi.name}</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
  
 </web-app>

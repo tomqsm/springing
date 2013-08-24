@@ -42,7 +42,7 @@ public class IndexControllerTest {
     /**
      * Test of sayHello method, of class IndexController.
      */
-    @Test
+//    @Test
     public void testSayHello() throws InterruptedException {
         selBrowser.open("/index?lang=en");
         selBrowser.waitForPageToLoad("90000");

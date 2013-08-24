@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/lukasfloorspring"/>
+<Context antiJARLocking="true" path="/lukasfloorspring">
+    <Resource auth="Container" 
+              driverClassName="${db.driver.class.name}" 
+              maxActive="100" maxIdle="30" 
+              maxWait="10000" 
+              name="${db.jndi.name}" 
+              password="${db.password}" 
+              type="javax.sql.DataSource" 
+              url="${db.url}" 
+              username="${db.username}"/>
+</Context>
