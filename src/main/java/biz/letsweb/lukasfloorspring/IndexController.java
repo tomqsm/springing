@@ -32,4 +32,13 @@ public class IndexController {
         model.addAttribute("user", user);
         return VIEW_NAME;
     }
+    
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String goAdmin(ModelMap model) {
+        final User user = usersDao.findUserById(1);
+//        logger.info("In method ... ");
+        model.addAttribute("date", new Date());
+        model.addAttribute("user", user);
+        return "index/admin";
+    }
 }
