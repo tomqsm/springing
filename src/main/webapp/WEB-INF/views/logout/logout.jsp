@@ -6,14 +6,6 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <% pageContext.setAttribute("now", new DateTime());%>
-<h1>Admin page</h1>
-<s:url var="logoutUrl" value="/j_spring_security_logout" />
-<p></p>
 
-<div id="userinfo">
-    <sec:authorize access="isAuthenticated()">
-        <sec:authentication property="principal.username" />
-        <br/>
-        <a href="${logoutUrl}">labelLogout</a>
-    </sec:authorize>
-</div>
+<s:url var="logoutUrl" value="/j_spring_security_logout" />
+<h1>Logged out thank you.</h1>

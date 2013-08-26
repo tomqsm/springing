@@ -88,6 +88,11 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
+    <!-- Disables Servlet Container welcome file handling. Needed for compatibility with Servlet 3.0 and Tomcat 7.0 -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
     <resource-ref>
         <description>My DataSource Reference</description>
         <res-ref-name>${db.jndi.name}</res-ref-name>
