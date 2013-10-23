@@ -27,6 +27,8 @@ public class IndexController {
     private JdbcUsersDao usersDao;
     @Autowired
     private MessageSource messageSource;
+    @Autowired
+    private SessionContainer sessionContainer;
 
     @RequestMapping(method = RequestMethod.GET)
     public String sayHello(ModelMap model, Locale locale) {
@@ -37,6 +39,7 @@ public class IndexController {
         final String message = messageSource.getMessage("welcome", new Object[]{}, locale);
         logger.info("message: {}", message);
         model.addAttribute("message", new Message("myMessage", message));
+        sessionContainer.setSessionString("tomasz");
         return VIEW_NAME;
     }
 
@@ -56,6 +59,8 @@ public class IndexController {
 //        logger.info("In method ... ");
         model.addAttribute("date", new Date());
         model.addAttribute("user", user);
+                System.out.println(sessionContainer.getSessionString());
+
         return "index/login";
     }
 

@@ -93,6 +93,16 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>securedapp</web-resource-name>
+            <url-pattern>/index/login</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
     <resource-ref>
         <description>My DataSource Reference</description>
         <res-ref-name>${db.jndi.name}</res-ref-name>
