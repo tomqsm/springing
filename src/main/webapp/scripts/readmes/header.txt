@@ -1,0 +1,6 @@
+/*
+Copyright (C) ${year} Tomasz Kusmierczyk (letsweb.biz)
+Licence: MIT Licence
+Project: ${ant.project.name}
+Date: ${today}
+*/

@@ -12,34 +12,31 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- *
- * @author Tomasz
- */
 @Controller
-@RequestMapping(value = {IndexController.URL_MAPPING})
+@RequestMapping(value = {"/"})
 public class IndexController {
 
     final Logger logger = LoggerFactory.getLogger(IndexController.class);
-    public static final String URL_MAPPING = "/index";
     public static final String VIEW_NAME = "index";
     @Autowired
     private JdbcUsersDao usersDao;
     @Autowired
     private MessageSource messageSource;
-    @Autowired
-    private SessionContainer sessionContainer;
+//    @Autowired
+//    private SessionContainer sessionContainer;
+    private String requestString;
 
     @RequestMapping(method = RequestMethod.GET)
     public String sayHello(ModelMap model, Locale locale) {
-        final User user = usersDao.findUserById(1);
+//        final User user = usersDao.findUserById(1);
 //        logger.info("In method ... ");
         model.addAttribute("date", new Date());
-        model.addAttribute("user", user);
+//        model.addAttribute("user", user);
         final String message = messageSource.getMessage("welcome", new Object[]{}, locale);
         logger.info("message: {}", message);
         model.addAttribute("message", new Message("myMessage", message));
-        sessionContainer.setSessionString("tomasz");
+//        sessionContainer.setSessionString("tomasz");
+        requestString = "set in index";
         return VIEW_NAME;
     }
 
@@ -59,7 +56,8 @@ public class IndexController {
 //        logger.info("In method ... ");
         model.addAttribute("date", new Date());
         model.addAttribute("user", user);
-                System.out.println(sessionContainer.getSessionString());
+//        System.out.println(sessionContainer.getSessionString());
+        System.out.println(requestString);
 
         return "index/login";
     }
@@ -72,6 +70,7 @@ public class IndexController {
         model.addAttribute("user", user);
         return "index/logout";
     }
+
     @RequestMapping(value = "/login/failed", method = RequestMethod.GET)
     public String goLoginFailed(ModelMap model) {
         final User user = usersDao.findUserById(1);

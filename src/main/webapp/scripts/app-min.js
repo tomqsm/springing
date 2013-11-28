@@ -1,0 +1,1 @@
+var app=(function f(){var a=function(){alert("initialising")};return{inits:function(){a()}}})();$.widget("lw.test",{options:{value:0},_create:function(){this.element.text("widget value: "+this.options.value)}});

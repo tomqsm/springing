@@ -8,3 +8,9 @@
 <% pageContext.setAttribute("now", new DateTime());%>
 <img src="<s:url value="/resources/images/logo.png"/>">
 <p><joda:format value="${now}" style="SM" /></p>
+<div id="header"></div>
+<script>
+    $(document).ready(function() {
+        $('#header').test();
+    });
+</script>
