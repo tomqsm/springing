@@ -5,17 +5,16 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <s:url var="langPl" value="/?lang=pl"/>
 <s:url var="langEn" value="/?lang=en"/>
-${pageContext.response.locale}
 <div class="flagLang">
     <c:choose>
         <c:when test="${'en' eq pageContext.response.locale}">
             <div class="langText">
-                <a href="${langPl}"><s:message code="language.pl" /> </a>
+                <a href="${langPl}"><s:message code="language"/> </a>
             </div>
         </c:when>
         <c:otherwise>
             <div class="langText">
-                <a href="${langEn}"><s:message code="language.en" /> </a>            
+                <a href="${langEn}"><s:message code="language"/></a>            
             </div>
         </c:otherwise>
     </c:choose>

@@ -49,7 +49,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     
     <!--ResourceBundleThemeSource class, is responsible for loading the ResourceBundle of the active theme-->
     <beans:bean class="org.springframework.ui.context.support.ResourceBundleThemeSource" 
-                id="themeSource" p:basenamePrefix="" />
+                id="themeSource" p:basenamePrefix="theme" />
     <!--CookieThemeResolver class, is used to resolve the active theme for users-->
     <beans:bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver" 
                 id="localeResolver" p:cookieName="locale" p:defaultLocale="pl" p:cookieMaxAge="3600" />
@@ -57,7 +57,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     <beans:bean class="org.springframework.web.servlet.theme.CookieThemeResolver"
                 id="themeResolver" 
                 p:cookieName="theme" 
-                p:defaultThemeName="theme1" />
+                p:defaultThemeName="1" />
     
     <beans:bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
                 id="messageSource" 

@@ -4,8 +4,8 @@
 <%@page session="false" %>
 <%@taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="t" uri="http://tiles.apache.org/tags-tiles" %>
 <% pageContext.setAttribute("now", new DateTime());%>
-<h1>Index page</h1>
 <p>Paragraph</p>
 
 
