@@ -1,4 +1,17 @@
 body { 
-    background-color: crimson;
+    background-color: gainsboro;
+}
+.flagLang {
+   width:20px;
+   height:20px;
+   background: url(../images/sprite.png) 0px 0px;
 }
 
+.langText{
+    text-align: center;
+}
+.langText a {
+    float: left;
+    position: relative;
+    top: 20px;
+}

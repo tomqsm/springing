@@ -1,9 +1,34 @@
 body { 
-    background-color: appworkspace;
+    background-color: wheat;
 }
 .container {
 /*    margin-right: auto;
     margin-left: auto;*/
     width: 1100px; /* or 950px */
 }
+.flagLang {
+   width:20px;
+   height:20px;
+   background: url(../images/sprite.png) -20px 0px;
+}
+.langText{
+    text-align: center;
+}
+.langText a {
+    float: left;
+    position: relative;
+    top: 20px;
+    z-index: 1;
+}
+.link-spanner{
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 2;
 
+  /* edit: fixes overlap error in IE7/8, 
+     make sure you have an empty gif 
+  background-image: url('empty.gif');*/
+}   

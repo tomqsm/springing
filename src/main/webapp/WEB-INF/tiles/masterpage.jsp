@@ -35,9 +35,6 @@
         <t:insertAttribute name="lang" />
         <p>pagejs: ${pagejss}</p>
         English: <s:message code="welcome" />
-
-
-        
         <t:insertAttribute name="header" />
         <t:insertAttribute name="body" />
         <h1>Hello World default template! ${jquery_core}</h1>
