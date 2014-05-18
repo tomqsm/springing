@@ -10,4 +10,5 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
     <!--<import resource="classpath:datasource-tx-jpa.xml" />-->
     <context:component-scan base-package="biz.letsweb.lukasfloorspring" scoped-proxy="targetClass"/>
     <import resource="security-context.xml"/>
+    <bean id="myMessage" class="biz.letsweb.lukasfloorspring.Message" ></bean>
 </beans>

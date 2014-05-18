@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    
+    <definition name="masterpage" template="/WEB-INF/tiles/masterpage.jsp">
+        <put-attribute name="title" value="default" type="string" cascade="true"/>
+        <put-attribute name="lang" value="/WEB-INF/views/shared/lang.jsp" />
+        <put-attribute name="header" value="/WEB-INF/tiles/masterheader.jsp" />
+        <put-attribute name="body" value="/WEB-INF/tiles/masterbody.jsp" />
+    </definition>
+    
+    <definition extends="masterpage" name="index">
+        <put-attribute name="title" value="Index page" type="string"  />
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
+    </definition>
+    
+    <definition extends="masterpage" name="wieczor">
+        <put-attribute name="title" value="Wieczór" type="string"  />
+        <!--<put-attribute name="pagejs" value="/WEB-INF/views/index/index.jsp" />-->
+        <put-attribute name="body" value="/WEB-INF/views/wieczor/wieczor.jsp" />
+    </definition>
+    
+</tiles-definitions>

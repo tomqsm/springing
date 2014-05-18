@@ -49,7 +49,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     
     <!--ResourceBundleThemeSource class, is responsible for loading the ResourceBundle of the active theme-->
     <beans:bean class="org.springframework.ui.context.support.ResourceBundleThemeSource" 
-                id="themeSource" p:basenamePrefix="theme1" />
+                id="themeSource" p:basenamePrefix="" />
     <!--CookieThemeResolver class, is used to resolve the active theme for users-->
     <beans:bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver" 
                 id="localeResolver" p:cookieName="locale" p:defaultLocale="pl" p:cookieMaxAge="3600" />
@@ -74,9 +74,8 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
                 id="tilesConfigurer">
         <beans:property name="definitions">
             <beans:list>
-                <beans:value>/WEB-INF/layouts/layouts.xml</beans:value>
                 <!--Scan views directory for Tiles configurations--> 
-                <beans:value>/WEB-INF/views/**/views.xml</beans:value>
+                <beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
             </beans:list>
         </beans:property>
     </beans:bean>
