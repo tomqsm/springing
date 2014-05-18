@@ -7,8 +7,6 @@
     <definition name="masterpage" template="/WEB-INF/tiles/masterpage.jsp">
         <put-attribute name="title" value="default" type="string" cascade="true"/>
         <put-attribute name="lang" value="/WEB-INF/views/shared/lang.jsp" />
-        <put-attribute name="header" value="/WEB-INF/tiles/masterheader.jsp" />
-        <put-attribute name="body" value="/WEB-INF/tiles/masterbody.jsp" />
     </definition>
     
     <definition extends="masterpage" name="index">

@@ -31,8 +31,8 @@ public class IndexController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String sayHello(ModelMap model, Locale locale) {
-    // final User user = usersDao.findUserById(1);
-    // logger.info("In method ... ");
+    final User user = usersDao.findUserById(1);
+    logger.info("found ... " + user.getFname());
     model.addAttribute("date", new Date());
     // model.addAttribute("user", user);
     final String message = messageSource.getMessage("welcome", new Object[] {}, locale);

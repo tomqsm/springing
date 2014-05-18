@@ -2,8 +2,9 @@
 <Context antiJARLocking="true" path="/lukasfloorspring">
     <Resource auth="Container" 
               driverClassName="${db.driver.class.name}" 
-              maxActive="100" maxIdle="30" 
-              maxWait="10000" 
+              maxActive="20" 
+              maxIdle="${db.maxIdle}" 
+              maxWait="${db.maxWait}" 
               name="${db.jndi.name}" 
               password="${db.password}" 
               type="javax.sql.DataSource" 

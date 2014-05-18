@@ -17,11 +17,11 @@
 <html lang="pl">
     <t:importAttribute name="pagejs" toName="pagejs"/>
     <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
         <link rel="stylesheet" type="text/css" media="screen" href="<s:url value="/resources/styles/standard.css"/>" />
         <link rel="stylesheet" type="text/css" media="screen" href="${localised_css_url}" />
         <link rel="stylesheet" type="text/css" media="screen" href="${jquery_ui_css}" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=8" />
         <script src="${jquery_core}"></script>
         <script src="${jquery_ui}"></script>
         <!--pagejs section-->
@@ -29,23 +29,28 @@
             <script src="${pagejs}"></script>
         </c:if>
         <title><t:getAsString name="title" /></title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="langBox">
-                <t:insertAttribute name="lang" />
-            </div>
+    <div id="header"></div>
+    <script>
+        $(document).ready(function() {
+            $('#header').test();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="langBox">
+            <t:insertAttribute name="lang" />
         </div>
-        <div class="container">
-            <s:message code="welcome" />
-        </div>
-        <div class="container">
-            <t:insertAttribute name="header" />
-            <h1><t:getAsString name="title" /></h1>
-            <t:insertAttribute name="body" />
-            <h1>Hello World default template! ${jquery_core}</h1>
-        </div>
-        <script src="${app_min}"></script>
-        <!--<script src="${widgets}"></script>-->
-    </body>
+    </div>
+    <div class="container">
+        <s:message code="welcome" />
+    </div>
+    <div class="container">
+        <img src="<s:url value="/resources/images/logo.png"/>">
+        <h1><t:getAsString name="title" /></h1>
+        <t:insertAttribute name="body" />
+    </div>
+    <script src="${app_min}"></script>
+    <!--<script src="${widgets}"></script>-->
+</body>
 </html>
