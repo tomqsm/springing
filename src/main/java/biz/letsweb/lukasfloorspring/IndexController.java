@@ -1,6 +1,9 @@
 package biz.letsweb.lukasfloorspring;
 
+import biz.letsweb.lukasfloorspring.dataaccess.JdbcUsersDao;
+import biz.letsweb.lukasfloorspring.dataaccess.User;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +34,8 @@ public class IndexController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String sayHello(ModelMap model, Locale locale) {
-    final User user = usersDao.findUserById(1);
-    logger.info("found ... " + user.getFname());
+    final List<User> users = usersDao.findAll();
+    logger.info("found ... " + users);
     model.addAttribute("date", new Date());
     // model.addAttribute("user", user);
     final String message = messageSource.getMessage("welcome", new Object[] {}, locale);
@@ -40,6 +43,7 @@ public class IndexController {
     myMessage.setMessage("myMessage");
     myMessage.setType(message);
     model.addAttribute("message", myMessage);
+    model.addAttribute("users", users);
     // sessionContainer.setSessionString("tomasz");
     requestString = "set in index";
     return "index";
@@ -93,7 +97,4 @@ public class IndexController {
   public void setMyMessage(Message myMessage) {
     this.myMessage = myMessage;
   }
-
-
-
 }
