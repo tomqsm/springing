@@ -1,14 +1,38 @@
 body { 
     background-color: gray;
+    background: url(../images/bcg.gif);
+    font-family: Verdana;
+    font-size: 1em !important;
+}
+h1 {
+    font-size: 1.5em;
+    color: whitesmoke;
 }
 .container {
     margin-right: auto;
     margin-left: auto;
-    width: 1100px; /* or 950px */
+    width: 950px; /* or 950px */
 }
-.testBorder {
+.border {
     border: #000 thin solid;
 }
 .langBox{
+    display: box;
+    /*position: relative;*/
+    /*top: -40px;*/
+    /*right: -20px;*/
     float: right;
+    z-index: 10;
+}
+.langBox a {
+    color: white;
+    font-size: 11px;
+}
+.flashAdvert {
+    /*display: block;*/
+    /*width: 700px;*/
+    /*float: right;*/
+    position: relative;
+    text-align: right;
+    z-index: 0;
 }
