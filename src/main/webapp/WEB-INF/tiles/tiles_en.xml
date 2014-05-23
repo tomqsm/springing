@@ -5,16 +5,18 @@
 <tiles-definitions>
        
     <definition extends="masterpage" name="index">
-        <put-attribute name="title" value="Index page" type="string"  />
+        <put-attribute name="title" value="Floors and carpentry." type="string"  />
         <!--here you can add your own page specific scripts-->
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/shared/menu_en.jsp" />
+
     </definition>
-    
-    <definition extends="masterpage" name="wieczor">
-        <put-attribute name="title" value="Wieczór" type="string"  />
-        <!--<put-attribute name="pagejs" value="/WEB-INF/views/index/index.jsp" />-->
-        <put-attribute name="body" value="/WEB-INF/views/wieczor/wieczor.jsp" />
+       
+    <definition extends="m-masterpage" name="index-mobile">
+        <put-attribute name="title" value="mobile" type="string"  />
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/m-index.jsp" />
     </definition>
     
 </tiles-definitions>

@@ -29,6 +29,8 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     
     <beans:bean id="usersDao" class="biz.letsweb.lukasfloorspring.dataaccess.JdbcUsersDao"
                 p:dataSource-ref="dataSource" />
+    <beans:bean id="pagesDao" class="biz.letsweb.lukasfloorspring.dataaccess.JdbcPagesDao"
+                p:dataSource-ref="dataSource" />
     
     <!--    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/" />
@@ -42,6 +44,20 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
         <beans:bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor"/>
         <beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" 
                     p:paramName="lang"/>
+        <interceptor> 
+            <mapping path="/**" />
+            <beans:bean class="biz.letsweb.lukasfloorspring.MobileInterceptor" init-method="init">
+                <beans:property name="mobileUserAgents">
+                    <beans:list value-type="java.lang.String">
+                        <beans:value>.*(webos|palm|treo).*</beans:value>
+                        <beans:value>.*(android).*</beans:value>
+                        <beans:value>.*(kindle|pocket|o2|vodaphone|wap|midp|psp).*</beans:value>
+                        <beans:value>.*(iphone|ipod).*</beans:value>
+                        <beans:value>.*(blackberry|opera mini).*</beans:value>
+                    </beans:list>
+                </beans:property>
+            </beans:bean>
+        </interceptor>
     </interceptors>
     
     <!--THEMES-->
@@ -65,7 +81,8 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <!--TILES TEMPLATING-->
     <!-- Tiles Configuration -->
-    <beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
+    <beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" 
+                id="tilesViewResolver">
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
     </beans:bean>
     <!--<beans:bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>-->

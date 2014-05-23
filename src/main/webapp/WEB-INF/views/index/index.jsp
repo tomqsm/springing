@@ -7,10 +7,34 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="t" uri="http://tiles.apache.org/tags-tiles" %>
 <% pageContext.setAttribute("now", new DateTime());%>
-<ul>
-    
-<c:forEach items="${users}" var="u" varStatus="i">
-    <joda:parseDateTime var="parsed" value="${u.inserted}" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
-    <li>${i.count}) ${u.fname} &nbsp; ${u.lname} &nbsp;&#9; <joda:format value="${parsed}" style="SM"/></li>
-</c:forEach>
-</ul>
+<div id="tab-positioner">
+    <div id="tab-container" class="tab-container">
+        <ul class='etabs'>
+            <li class='tab'><a href="#podłogi">Podłogi</a></li>
+            <li class='tab'><a href="#cyklinowanie">Cyklinowanie</a></li>
+            <li class='tab'><a href="#schody">Schody</a></li>
+            <li class='tab'><a href="#drzwi">Drzwi</a></li>
+            <li class='tab'><a href="#balustrady">Balustrady</a></li>
+        </ul>
+        <div id="podłogi">
+            <h2>Robię super podłogi.</h2>
+            <p>Podłoga – element wykańczający górną część stropu; posadzka jest elementem składowym podłogi. Zapewnia izolację termiczną, akustyczną i przeciwwilgociową, przenosi obciążenia równomiernie rozłożone i skupione, jest płaska i przystosowana do tego, aby mógł po niej odbywać się ruch.</p>
+        </div>
+        <div id="cyklinowanie">
+            <h1>Robię super cyklinowanie</h1>
+            <!-- content -->
+        </div>
+        <div id="schody">
+            <h2>Robię super schody</h2>
+            <!-- content -->
+        </div>
+        <div id="drzwi">
+            <h2>Robię super drzwi</h2>
+            <!-- content -->
+        </div>
+        <div id="balustrady">
+            <h2>Robię super balustrady</h2>
+            <!-- content -->
+        </div>
+    </div>
+</div>

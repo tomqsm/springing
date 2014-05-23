@@ -1,53 +1,32 @@
-@import url("mobile.css") handheld; 
-@import url("mobile.css") only screen and (max-device-width:480px);
 body { 
-    background-color: gray;
     background: url(../images/bcg.gif);
     font-family: Verdana;
     font-size: 1em !important;
     color: beige;
+    width: auto;
 }
 h1 {
-    font-size: 1.5em;
-    margin-left: 20px;
+
 }
 .container {
-    margin-right: auto;
-    margin-left: auto;
-    width: 950px; /* or 950px */
+    width: auto;
 }
 .border {
     border: #000 thin solid;
 }
 .langBox{
     display: box;
-    /*position: relative;*/
-    /*top: -40px;*/
-    /*right: -20px;*/
-    float: right;
     z-index: 10;
 }
 .langBox a {
     color: white;
     font-size: 11px;
 }
-.flashAdvert {
-    /*display: block;*/
-    /*width: 700px;*/
-    /*float: right;*/
-    position: relative;
-    text-align: right;
-    z-index: 0;
-}
+
 .menu{
     margin-top: 30px;
+    margin-bottom: 30px;
     float: left;    
-    background-color: #333333;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /* IE 8 */
-    filter: alpha(opacity=40);  /* IE 5-7 */
-    -moz-opacity: 0.4;          /* Netscape */
-    -khtml-opacity: 0.4;        /* Safari 1.x */
-    opacity: 0.4; 
 }
 .menu li {
     border-bottom: solid 1px grey;
@@ -67,9 +46,6 @@ h1 {
 #topLeftImages {
     display: table-cell;
     vertical-align: bottom;
-}
-.child {
-    display: inline-block;
 }
 
 .etabs { margin: 0; padding: 0; }
@@ -97,16 +73,5 @@ h1 {
     background: #fff; border: solid #666 1px; 
     padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
 .tab-container{
-
-
-}
-#tab-positioner{
-    display: block;
-    position: relative;
-    left: 50px;
-    top: 25px;
-    /*    margin-left: 50px;
-    margin-top: 30px;*/
-    width: 600px;
-    height: 200px;
+    float: left;
 }

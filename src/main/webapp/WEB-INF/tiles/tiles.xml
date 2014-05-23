@@ -10,6 +10,12 @@
         <put-attribute name="flashAdvert" value="/WEB-INF/views/shared/flashAdvert.jsp" />
     </definition>
     
+    <definition name="m-masterpage" template="/WEB-INF/tiles/m-masterpage.jsp">
+        <put-attribute name="title" value="default" type="string" cascade="true"/>
+        <put-attribute name="lang" value="/WEB-INF/views/shared/lang.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/shared/menu_pl.jsp" />
+    </definition>
+    
     <definition extends="masterpage" name="index">
         <put-attribute name="title" value="Index page" type="string"  />
         <!--here you can add your own page specific scripts-->
@@ -17,10 +23,10 @@
         <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
     </definition>
     
-    <definition extends="masterpage" name="wieczor">
-        <put-attribute name="title" value="Wieczór" type="string"  />
-        <!--<put-attribute name="pagejs" value="/WEB-INF/views/index/index.jsp" />-->
-        <put-attribute name="body" value="/WEB-INF/views/wieczor/wieczor.jsp" />
+    <definition extends="m-masterpage" name="index-mobile">
+        <put-attribute name="title" value="Podłogi i stolarka" type="string"  />
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/m-index.jsp" />
     </definition>
     
 </tiles-definitions>
