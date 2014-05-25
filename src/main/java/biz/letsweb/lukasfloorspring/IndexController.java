@@ -59,6 +59,16 @@ public class IndexController {
     return "index/admin";
   }
 
+  @RequestMapping(value = "/cennik", method = RequestMethod.GET)
+  public String goPricelist(ModelMap model) {
+    return "cennik";
+  }
+
+  @RequestMapping(value = "/kontakt", method = RequestMethod.GET)
+  public String goContact(ModelMap model) {
+    return "kontakt";
+  }
+
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String goLogin(ModelMap model) {
     final User user = usersDao.findUserById(1);

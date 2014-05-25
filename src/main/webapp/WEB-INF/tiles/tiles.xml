@@ -8,6 +8,11 @@
         <put-attribute name="title" value="default" type="string" cascade="true"/>
         <put-attribute name="lang" value="/WEB-INF/views/shared/lang.jsp" />
         <put-attribute name="flashAdvert" value="/WEB-INF/views/shared/flashAdvert.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/shared/menu_pl.jsp" />
+        <put-attribute name="breadcrumbs" value="/WEB-INF/views/shared/breadcrumbs.jsp" />
+        <put-list-attribute name="breadcrumbList">
+            <add-attribute value="Podłogi i stolarka.|/"/>
+        </put-list-attribute>
     </definition>
     
     <definition name="m-masterpage" template="/WEB-INF/tiles/m-masterpage.jsp">
@@ -17,10 +22,29 @@
     </definition>
     
     <definition extends="masterpage" name="index">
-        <put-attribute name="title" value="Index page" type="string"  />
+        <put-attribute name="title" value="Podłogi i stolarka." type="string"  cascade="true"/>
         <!--here you can add your own page specific scripts-->
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
+    </definition>
+
+    <definition extends="masterpage" name="cennik">
+        <put-attribute name="title" value="Cennik usług." type="string"  />
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/cennik.jsp" />
+        <put-list-attribute name="breadcrumbList" inherit="true">
+            <add-attribute value="Cennik usług.|/cennik"/>
+        </put-list-attribute>
+    </definition>
+    <definition extends="masterpage" name="kontakt">
+        <put-attribute name="title" value="Dane kontaktowe." type="string"  />
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/kontakt.jsp" />
+        <put-list-attribute name="breadcrumbList" inherit="true">
+            <add-attribute value="Dane kontaktowe.|/kontakt"/>
+        </put-list-attribute>
     </definition>
     
     <definition extends="m-masterpage" name="index-mobile">

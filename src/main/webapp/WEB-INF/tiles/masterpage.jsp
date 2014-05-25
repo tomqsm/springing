@@ -13,9 +13,11 @@
 <s:url var="jquery_ui_css" value="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"  />
 <s:url var="app_min" value="/resources/scripts/app-min.js"  />
 <s:url var="widgets" value="/resources/scripts/widgets.js"  />
+<t:importAttribute name="pagejs" toName="pagejs"/>
+<t:importAttribute name="title" toName="pageTitle" scope="request"/>
+<t:importAttribute name="breadcrumbList" toName="breadcrumbList" scope="request"/>
 <!DOCTYPE html>
 <html lang="pl">
-    <t:importAttribute name="pagejs" toName="pagejs"/>
     <head>
         <link rel="shortcut icon" href="<s:url value="/resources/favicon.ico"/>" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,7 +36,7 @@
         <c:if test="${not empty pagejs}" >
             <!--<script src="${pagejs}"></script>-->
         </c:if>
-        <title><t:getAsString name="title" /></title>
+        <title>${pageTitle}</title>
     <div id="header"></div>
     <script>
         $(document).ready(function() {
@@ -42,7 +44,7 @@
             $("#topLeftImages img:nth-child(1)").show("fade", 500);
             $("#topLeftImages img:nth-child(1)").delay(4900).hide("slide", {direction: 'left'}, 600);
             $("#topLeftImages img:nth-child(2)").delay(5600).show("slide", {direction: 'right'}, 600);
-           
+
         });
     </script>
 </head>
@@ -63,7 +65,7 @@
         </div>
     </div>
     <div class="container">
-        <h1><t:getAsString name="title" /></h1>
+        <t:insertAttribute name="breadcrumbs" ignore="false" />
         <t:insertAttribute name="menu" ignore="true"/>
     </div>
 

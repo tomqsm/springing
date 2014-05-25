@@ -4,15 +4,43 @@
 "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
        
-    <definition extends="masterpage" name="index">
+    <definition name="masterpage_en" extends="masterpage">
+        <put-list-attribute name="breadcrumbList">
+            <add-attribute value="Floors and carpentry.|/"/>
+        </put-list-attribute>
+    </definition>
+    
+    <definition extends="masterpage_en" name="index">
         <put-attribute name="title" value="Floors and carpentry." type="string"  />
         <!--here you can add your own page specific scripts-->
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
-        <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/index/index_en.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/shared/menu_en.jsp" />
 
     </definition>
        
+    <definition extends="masterpage_en" name="cennik">
+        <put-attribute name="title" value="Price list" type="string"  />
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/cennik_en.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/shared/menu_en.jsp" />
+        <put-list-attribute name="breadcrumbList" inherit="true">
+            <add-attribute value="Pricelist.|/cennik"/>
+        </put-list-attribute>
+    </definition>
+    
+    <definition extends="masterpage_en" name="kontakt">
+        <put-attribute name="title" value="Contact details." type="string"  />
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/kontakt_en.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/shared/menu_en.jsp" />
+        <put-list-attribute name="breadcrumbList" inherit="true">
+            <add-attribute value="Contact details.|/kontakt"/>
+        </put-list-attribute>
+    </definition>
+    
     <definition extends="m-masterpage" name="index-mobile">
         <put-attribute name="title" value="mobile" type="string"  />
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />

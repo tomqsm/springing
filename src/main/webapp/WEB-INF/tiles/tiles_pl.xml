@@ -3,15 +3,7 @@
 "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
 "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-       
-    <definition extends="masterpage" name="index">
-        <put-attribute name="title" value="Podłogi i stolarka." type="string"  />
-        <!--here you can add your own page specific scripts-->
-        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
-        <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/shared/menu_pl.jsp" />
-    </definition>
-    
+  
     <definition extends="m-masterpage" name="index-mobile">
         <put-attribute name="title" value="Podłogi i stolarka." type="string"  />
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />

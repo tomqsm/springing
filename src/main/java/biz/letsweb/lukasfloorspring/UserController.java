@@ -29,7 +29,7 @@ public class UserController {
 
 
   @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-  public String changeLocale(@PathVariable(value = "id") int id) {
+  public String delete(@PathVariable(value = "id") int id) {
     logger.info("will delete id {}", id);
     usersDao.deleteById(id);
     return "redirect:/";
