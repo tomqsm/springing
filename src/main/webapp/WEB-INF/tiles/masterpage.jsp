@@ -6,6 +6,8 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="t" uri="http://tiles.apache.org/tags-tiles" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://lukasfloor.com/tags" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <s:theme var="localised_css" code="styleSheet"  />
 <s:url var="localised_css_url" value="/${localised_css}"  />
 <s:url var="jquery_core" value="/resources/scripts/lib/jquery-1.10.2.min.js"  />
@@ -17,6 +19,9 @@
 <t:importAttribute name="title" toName="pageTitle" scope="request"/>
 <t:importAttribute name="menuList" toName="menuList" scope="request"/>
 <t:importAttribute name="breadcrumbList" toName="breadcrumbList" scope="request" />
+<c:if test="${pageTitle eq 'default'}">
+    <c:set var="pageTitle" value="${f:psvParser(menuList,breadcrumbList.get(fn:length(breadcrumbList)-1),'BREADCRUMB_DISPLAY')}" scope="request"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -58,7 +63,9 @@
         <div class="flashAdvert" >
             <t:insertAttribute name="flashAdvert" />
         </div>
-        <img class="" style="position: relative; top: -150px;" src="<s:url value="/resources/images/logo.png"/>"/>
+            <a href="<s:url value="/"/>${'en' eq pageContext.response.locale ? '?lang=en' : ''}">
+            <img class="" style="position: relative; top: -150px;" src="<s:url value="/resources/images/logo.png"/>"/>
+        </a>
         <div class="langBox">
             <div class="flagLang">
                 <t:insertAttribute name="lang" />

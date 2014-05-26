@@ -29,14 +29,12 @@
     </definition>
     
     <definition extends="masterpage" name="index">
-        <put-attribute name="title" value="Podłogi i stolarka." type="string"  cascade="true"/>
         <!--here you can add your own page specific scripts-->
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/index.jsp" />
     </definition>
 
     <definition extends="masterpage" name="cennik">
-        <put-attribute name="title" value="Cennik usług." type="string"  />
         <!--here you can add your own page specific scripts-->
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/cennik.jsp" />
@@ -46,12 +44,19 @@
     </definition>
     
     <definition extends="masterpage" name="kontakt">
-        <put-attribute name="title" value="Dane kontaktowe." type="string"  />
         <!--here you can add your own page specific scripts-->
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/kontakt.jsp" />
         <put-list-attribute name="breadcrumbList" inherit="true">
             <add-attribute value="2"/>
+        </put-list-attribute>
+    </definition>
+    <definition extends="masterpage" name="firma">
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/index/firma.jsp" />
+        <put-list-attribute name="breadcrumbList" inherit="true">
+            <add-attribute value="3"/>
         </put-list-attribute>
     </definition>
     
