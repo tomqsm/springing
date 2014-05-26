@@ -15,7 +15,8 @@
 <s:url var="widgets" value="/resources/scripts/widgets.js"  />
 <t:importAttribute name="pagejs" toName="pagejs"/>
 <t:importAttribute name="title" toName="pageTitle" scope="request"/>
-<t:importAttribute name="breadcrumbList" toName="breadcrumbList" scope="request"/>
+<t:importAttribute name="menuList" toName="menuList" scope="request"/>
+<t:importAttribute name="breadcrumbList" toName="breadcrumbList" scope="request" />
 <!DOCTYPE html>
 <html lang="pl">
     <head>

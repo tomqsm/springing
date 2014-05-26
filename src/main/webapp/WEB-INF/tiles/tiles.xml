@@ -11,7 +11,14 @@
         <put-attribute name="menu" value="/WEB-INF/views/shared/menu_pl.jsp" />
         <put-attribute name="breadcrumbs" value="/WEB-INF/views/shared/breadcrumbs.jsp" />
         <put-list-attribute name="breadcrumbList">
-            <add-attribute value="Podłogi i stolarka.|/"/>
+            <add-attribute value="0"/>
+        </put-list-attribute>
+        <!--menu format menuDisplay|href|id|breadcrumbDisplay-->
+        <put-list-attribute name="menuList">
+            <add-attribute value="Podłogi i stolarka.|/|home|Podłogi i stolarka"/>
+            <add-attribute value="Cennik|/cennik|cennik|Cennik usług"/>
+            <add-attribute value="Kontakt|/kontakt|kontakt|Dane kontaktowe"/>
+            <add-attribute value="Firma|/firma|firma|Informacje o firmie"/>
         </put-list-attribute>
     </definition>
     
@@ -34,17 +41,25 @@
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/cennik.jsp" />
         <put-list-attribute name="breadcrumbList" inherit="true">
-            <add-attribute value="Cennik usług.|/cennik"/>
+            <add-attribute value="1"/>
         </put-list-attribute>
     </definition>
+    
     <definition extends="masterpage" name="kontakt">
         <put-attribute name="title" value="Dane kontaktowe." type="string"  />
         <!--here you can add your own page specific scripts-->
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/kontakt.jsp" />
         <put-list-attribute name="breadcrumbList" inherit="true">
-            <add-attribute value="Dane kontaktowe.|/kontakt"/>
+            <add-attribute value="2"/>
         </put-list-attribute>
+    </definition>
+    
+    <definition extends="masterpage" name="404">
+        <put-attribute name="title" value="Zasób nie znaleziony." type="string"  />
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/errors/404.jsp" />
     </definition>
     
     <definition extends="m-masterpage" name="index-mobile">

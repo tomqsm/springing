@@ -5,8 +5,12 @@
 <tiles-definitions>
        
     <definition name="masterpage_en" extends="masterpage">
-        <put-list-attribute name="breadcrumbList">
-            <add-attribute value="Floors and carpentry.|/"/>
+        <!--menu format menuDisplay|href|id|breadcrumbDisplay-->
+        <put-list-attribute name="menuList">
+            <add-attribute value="Floors and carpentry.|/|home|Floors and carpentry"/>
+            <add-attribute value="Prices|/cennik|cennik|Price list"/>
+            <add-attribute value="Contact|/kontakt|kontakt|Contact details"/>
+            <add-attribute value="Firm|/firma|firma|About firm"/>
         </put-list-attribute>
     </definition>
     
@@ -26,7 +30,7 @@
         <put-attribute name="body" value="/WEB-INF/views/index/cennik_en.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/shared/menu_en.jsp" />
         <put-list-attribute name="breadcrumbList" inherit="true">
-            <add-attribute value="Pricelist.|/cennik"/>
+            <add-attribute value="1"/>
         </put-list-attribute>
     </definition>
     
@@ -37,7 +41,7 @@
         <put-attribute name="body" value="/WEB-INF/views/index/kontakt_en.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/shared/menu_en.jsp" />
         <put-list-attribute name="breadcrumbList" inherit="true">
-            <add-attribute value="Contact details.|/kontakt"/>
+            <add-attribute value="2"/>
         </put-list-attribute>
     </definition>
     

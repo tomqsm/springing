@@ -68,6 +68,11 @@ public class IndexController {
   public String goContact(ModelMap model) {
     return "kontakt";
   }
+  @RequestMapping(value = "/404", method = RequestMethod.GET)
+  public String error404(ModelMap model) {
+      System.out.println("404");
+    return "404";
+  }
 
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String goLogin(ModelMap model) {

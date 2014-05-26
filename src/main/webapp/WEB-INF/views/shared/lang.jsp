@@ -23,5 +23,3 @@
             </div>
         </c:otherwise>
     </c:choose>
-<!--${pageContext.request.requestURL}-->
-${baseURL}

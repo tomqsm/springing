@@ -10,6 +10,7 @@ body {
 h1 {
     font-size: 1.5em;
     margin-left: 20px;
+    margin-top: 20px;
 }
 h2 {
     font-size: 1.2em;
@@ -63,6 +64,9 @@ h2 {
     padding-left: 10px;
 }
 .menu li:hover{
+    background-color: background;
+}
+.selected{
     background-color: background;
 }
 .menu li a {

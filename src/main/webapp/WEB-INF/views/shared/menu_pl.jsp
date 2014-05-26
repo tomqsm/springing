@@ -3,8 +3,13 @@
 <%@page session="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="f" uri="http://lukasfloor.com/tags" %>
 <ul class="menu">
-    <li><a href="<s:url value="/cennik"/>">Cennik</a></li>
-    <li><a href="<s:url value="/kontakt"/>">Kontakt</a></li>
-    <li><a href="<s:url value="#"/>">Firma</a></li>
+    <c:forEach var="menuLineIdx" items="${menuList}" varStatus="loop">
+        <c:if test="${!loop.first}">
+            <li>
+                <a  class="" href="<s:url value="${f:psvParser(menuList,loop.count-1,'URL')}${('en' eq pageContext.response.locale) ? '?lang=en' : ''}"/>">${f:psvParser(menuList,loop.count-1,'MENU_DISPLAY')}</a>
+            </li>
+        </c:if>
+    </c:forEach>
 </ul>

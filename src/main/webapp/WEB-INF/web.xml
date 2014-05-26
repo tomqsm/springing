@@ -28,7 +28,11 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
             <param-name>forceEncoding</param-name>
             <param-value>true</param-value>
         </init-param>
-    </filter>
+    </filter>    
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!--This filter provides support for HTTP methods other than GET and POST (for example, PUT).-->
     <filter>
         <filter-name>HttpMethodFilter</filter-name>
@@ -42,12 +46,6 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
         <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
         <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
     </filter>-->
-    
-    <filter-mapping>
-        <filter-name>CharacterEncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
     
     <!--    <filter-mapping>
         <filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
@@ -102,7 +100,10 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
-    
+    <error-page>
+	<error-code>404</error-code>
+	<location>/404</location>
+  </error-page>
     <resource-ref>
         <description>My DataSource Reference</description>
         <res-ref-name>${db.jndi.name}</res-ref-name>
