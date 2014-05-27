@@ -11,7 +11,7 @@
         <s:url var="flashAdvertUrl" value="/resources/flash/slogans.swf"  />
     </c:otherwise>
 </c:choose>
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="690" height="250" id="slogans" align="middle">
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="650" height="250" id="slogans" align="middle">
     <param name="movie" value="${flashAdvertUrl}" />
     <param name="quality" value="best" />
     <param name="bgcolor" value="#999999" />
@@ -24,7 +24,7 @@
     <param name="salign" value="" />
     <param name="allowScriptAccess" value="sameDomain" />
     <!--[if !IE]>-->
-    <object type="application/x-shockwave-flash" data="${flashAdvertUrl}" width="690" height="250">
+    <object type="application/x-shockwave-flash" data="${flashAdvertUrl}" width="650" height="250">
         <param name="movie" value="${flashAdvertUrl}" />
         <param name="quality" value="best" />
         <param name="bgcolor" value="#999999" />
