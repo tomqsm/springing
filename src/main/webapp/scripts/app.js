@@ -13,7 +13,7 @@ var app = (function f() {
     return {
         inits: function() {
             init();
-        }
+        },
     }
 })();
 $.widget("lw.closeIt", {
@@ -53,14 +53,19 @@ $.widget("lw.getJson", {
     options: {
         app_context: app_context,
         url: 'ajax',
-        data: ''
+        data: '',
+        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context+'/resources/images/ajax-loader.gif', style:"visibility:hidden"})
     },
     _create: function() {
-        console.log(this.options.url);
         this.element.bind('click', $.proxy(function() {
             this.get();
         }, this));
-
+        _.templateSettings = {
+            interpolate: /\<\@\=(.+?)\@\>/gim,
+            evaluate: /\<\@([\s\S]+?)\@\>/gim,
+            escape: /\<\@\-(.+?)\@\>/gim
+        };
+        this.element.prepend(this.options.ajaxloader);
     },
     _setOption: function(key, value) {
         this.options[key] = value;
@@ -70,26 +75,27 @@ $.widget("lw.getJson", {
         this.drawTable()
     },
     get: function() {
+        this.options.ajaxloader.css('visibility','visible');
         var jqxhr = $.ajax({
             url: this.options['app_context'] + '' + this.options.url,
-            type: 'GET'
-        });
-        jqxhr.done($.proxy(function(data) {
-            this.element.text(data.name);
-            this._setOption('data', data);
-            return data;
-        }, this));
-        jqxhr.always(function() {
+            type: 'GET',
+            timeout: 3000
+        }).then(
+                $.proxy(function(data) {
+                    this.element.text(data.name);
+                    this._setOption('data', data);
+                    return data;
+                }, this),
+                function() {
 
+                },
+                function() {
+
+                });
+        jqxhr.always(function() {
         });
     },
     drawTable: function() {
-        _.templateSettings = {
-            interpolate: /\<\@\=(.+?)\@\>/gim,
-            evaluate: /\<\@([\s\S]+?)\@\>/gim,
-            escape: /\<\@\-(.+?)\@\>/gim
-        };
-        console.log($("script.template").html());
         var template = _.template($("script.template").html());
         var d = this.options['data'];
         var items = d.staff;
