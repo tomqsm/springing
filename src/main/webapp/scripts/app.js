@@ -49,3 +49,50 @@ $.widget("lw.closeIt", {
         }
     }
 });
+$.widget("lw.getJson", {
+    options: {
+        app_context: app_context,
+        url: 'ajax',
+        data: ''
+    },
+    _create: function() {
+        console.log(this.options.url);
+        this.element.bind('click', $.proxy(function() {
+            this.get();
+        }, this));
+
+    },
+    _setOption: function(key, value) {
+        this.options[key] = value;
+        this._update();
+    },
+    _update: function() {
+        this.drawTable()
+    },
+    get: function() {
+        var jqxhr = $.ajax({
+            url: this.options['app_context'] + '' + this.options.url,
+            type: 'GET'
+        });
+        jqxhr.done($.proxy(function(data) {
+            this.element.text(data.name);
+            this._setOption('data', data);
+            return data;
+        }, this));
+        jqxhr.always(function() {
+
+        });
+    },
+    drawTable: function() {
+        _.templateSettings = {
+            interpolate: /\<\@\=(.+?)\@\>/gim,
+            evaluate: /\<\@([\s\S]+?)\@\>/gim,
+            escape: /\<\@\-(.+?)\@\>/gim
+        };
+        console.log($("script.template").html());
+        var template = _.template($("script.template").html());
+        var d = this.options['data'];
+        var items = d.staff;
+        this.element.html(template({items: items, name: d.name}));
+    }
+});

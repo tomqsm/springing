@@ -13,6 +13,7 @@
 <s:url var="jquery_core" value="/resources/scripts/lib/jquery-1.10.2.min.js"  />
 <s:url var="jquery_ui" value="http://code.jquery.com/ui/1.10.3/jquery-ui.js"  />
 <s:url var="jquery_cookie" value="/resources/scripts/lib/jquery.cookie.js"  />
+<s:url var="underscore" value="/resources/scripts/lib/underscore.js"  />
 <s:url var="app_min" value="/resources/scripts/app.js"  />
 <s:url var="widgets" value="/resources/scripts/widgets.js"  />
 <t:importAttribute name="pagejs" toName="pagejs"/>
@@ -35,6 +36,7 @@
         <script src="${jquery_core}"></script>
         <script src="${jquery_ui}"></script>
         <script src="${jquery_cookie}"></script>
+        <script src="${underscore}"></script>
         <script src="<s:url value="/resources/scripts/lib/hashchange.js"/>"></script>
         <script src="<s:url value="/resources/scripts/lib/jquery.easytabs.min.js"/>"></script>
         <!--pagejs section-->
@@ -44,9 +46,11 @@
         <title>${pageTitle}</title>
     <div id="header"></div>
     <script>
+        app_context = '<s:url value="/"/>';
         $(document).ready(function() {
             $('#cookiesLegalNoteCloser').closeIt();
             $('#tab-container').easytabs();
+            $('#ajaxer').getJson({url: 'ajax'});
 //            $("#topLeftImages img:nth-child(1)").show("fade", 500);
 //            $("#topLeftImages img:nth-child(1)").delay(4800).hide("slide", {direction: 'left'}, 600);
 //            $("#topLeftImages img:nth-child(2)").delay(5600).show("slide", {direction: 'right'}, 600);
@@ -68,7 +72,7 @@
             </div>
         </div>
         <div class="flashAdvert" >
-            <t:insertAttribute name="flashAdvert" />
+            <%--<t:insertAttribute name="flashAdvert" />--%>
         </div>        
         <a href="<s:url value="/"/>${'en' eq pageContext.response.locale ? '?lang=en' : ''}">
             <img class="" style="position: relative; top: -140px;" src="<s:url value="/resources/images/logo.png"/>"/>
@@ -82,6 +86,22 @@
 
     <div class="container">
         <div style=" display: block; float: left;"><t:insertAttribute name="body" /></div>
+    </div>
+    <div class="container">
+        <a id="ajaxerlink" href="#">click</a>
+        <div id="ajaxer">tutaj</div>
+        <!-- BEGIN: Underscore Template Definition. -->
+        <script type="text/template" class="template">
+        czesc <@= name @>
+        <ul>
+            <@_.each(items, function(i, iter){ @>
+            <li>
+                <@=iter@>)<@=i@>  
+            </li>
+            <@});@>
+        </ul>
+        </script>
+        <!-- END: Underscore Template Definition. -->
     </div>
     <script src="${app_min}"></script>
     <!--<script src="${widgets}"></script>-->

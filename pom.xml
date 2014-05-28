@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.springframework.version>3.2.3.RELEASE</org.springframework.version>
         <tiles.version>3.0.1</tiles.version>
+        <jackson.version>1.9.10</jackson.version>
     </properties>
 
     <dependencies>
@@ -266,7 +267,12 @@
             <version>1.7.1</version>  
         </dependency>
         <!--to solve loggin problem-->
-        
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
