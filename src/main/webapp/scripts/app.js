@@ -51,20 +51,28 @@ $.widget("lw.closeIt", {
 });
 $.widget("lw.getJson", {
     options: {
+        templateEl: $.noop,
+        handleData: $.noop,
+        template: $.noop,
         app_context: app_context,
         url: 'ajax',
         data: '',
-        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context+'/resources/images/ajax-loader.gif', style:"visibility:hidden"})
+        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + '/resources/images/ajax-loader.gif', style: "visibility:hidden"})
     },
     _create: function() {
-        this.element.bind('click', $.proxy(function() {
-            this.get();
-        }, this));
         _.templateSettings = {
             interpolate: /\<\@\=(.+?)\@\>/gim,
             evaluate: /\<\@([\s\S]+?)\@\>/gim,
             escape: /\<\@\-(.+?)\@\>/gim
         };
+        if (this.options['templateEl'] !== $.noop) {
+            var templateHtml = this.options['templateEl'];
+            this.options.template = _.template(templateHtml.html());
+        }
+        this.element.bind('click', $.proxy(function() {
+            this.get();
+        }, this));
+
         this.element.prepend(this.options.ajaxloader);
     },
     _setOption: function(key, value) {
@@ -72,33 +80,31 @@ $.widget("lw.getJson", {
         this._update();
     },
     _update: function() {
-        this.drawTable()
+        this.options.el = this.element;
+        this.options.handleData(this.options.data, this.options);
     },
     get: function() {
-        this.options.ajaxloader.css('visibility','visible');
+        this.options.ajaxloader.css('visibility', 'visible');
         var jqxhr = $.ajax({
             url: this.options['app_context'] + '' + this.options.url,
             type: 'GET',
-            timeout: 3000
+            timeout: 4000
         }).then(
                 $.proxy(function(data) {
-                    this.element.text(data.name);
                     this._setOption('data', data);
                     return data;
                 }, this),
-                function() {
-
-                },
-                function() {
-
-                });
-        jqxhr.always(function() {
-        });
+                $.proxy(function(data) {
+                    this.element.text(' failed ' + data.statusText);
+                }, this),
+                $.proxy(function() {
+                }), this);
+        jqxhr.always($.proxy(function() {
+            this.options.ajaxloader.css('visibility', 'hidden');
+        }, this));
     },
-    drawTable: function() {
-        var template = _.template($("script.template").html());
-        var d = this.options['data'];
-        var items = d.staff;
-        this.element.html(template({items: items, name: d.name}));
+    _destroy: function() {
+        this.element.unbind();
+        this.element.remove(this.options.ajaxloader);
     }
 });

@@ -87,7 +87,7 @@ public class IndexController {
   public @ResponseBody
   AjaxModel ajax(ModelMap model) throws InterruptedException {
     AjaxModel am = new AjaxModel();
-    Thread.sleep(2000);
+    // Thread.sleep(3000);
     am.name = "tomasz";
     am.staff = new String[] {"kibol1", "kibol2"};
     return am;
