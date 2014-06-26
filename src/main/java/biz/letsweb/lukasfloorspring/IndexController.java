@@ -81,9 +81,8 @@ public class IndexController {
     return "404";
   }
 
-  @RequestMapping(value = "/ajax", method = RequestMethod.GET)
-  // @RequestMapping(value = "/ajax", method = {RequestMethod.GET, RequestMethod.HEAD},
-  // headers = "x-requested-with=XMLHttpRequest")
+  // @RequestMapping(value = "/ajax", method = RequestMethod.GET)
+  @RequestMapping(value = "/ajax", method = {RequestMethod.GET, RequestMethod.HEAD}, headers = "x-requested-with=XMLHttpRequest")
   public @ResponseBody
   AjaxModel ajax(ModelMap model) throws InterruptedException {
     AjaxModel am = new AjaxModel();

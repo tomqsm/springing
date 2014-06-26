@@ -66,11 +66,12 @@
                     containerheight: '3em'
                 });
                 $('#ajaxer').getJson({url: 'ajax', templateEl: $("script.template"),
-                    handleData: function(data, options) {
-                        options.el.html(options.template({json: data}));
-                        $("#created li:nth-child(2)").css('color', 'red');
-                    }
+                        handleData: function(data, options) {
+                            options.el.html(options.template({json: data}));
+                            $("#created li:nth-child(2)").css('color', 'red');
+                        }
                 });
+                        $('#menu').menuSelector({selected: '${f:psvParser(menuList,breadcrumbList.get(fn:length(breadcrumbList)-1),'ID')}'});
             });
         </script>
     </head>
@@ -85,7 +86,6 @@
                 <img style="" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSdQdXCytSoXljeTiXgC4rZFVFvFxsWpYEoa1FZQOj2Wqt3QnNybQ" width="300" height="240"/>
                 <img style="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjN60Uy3QiQe3s7ldRp50shlMA-L4xQSum0mgWOpF65FedSDtf" width="300" height="240"/>
                 <img style="" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUQmDihNq-5eBlk9DVTVFRfsknQCFcHVkVO_Zy2c6Mf6GMcb32jQ" width="300" height="240"/>
-                <img style="" src="http://www.100percentstainless.co.uk/wordpress/wp-content/gallery/balustrade-with-wooden-handrails/A%20A,%20Balustrade%20with%20a%20large%20Iroko%20handrail%20&%20privacy%20screen%20(Torquay).jpg" width="300" height="240"/>
                 <img style="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHG6dU_vqDOZ5GXklRyZdJIaMVn0iJYuM20BS8WomUgCkz0icB" width="300" height="240"/>
             </div>
             <div class="flashAdvert" >
@@ -100,7 +100,6 @@
                     <li>Wykładanie parkietu według precyzyjnych odmierzeń.</li>
                     <li>Cyklinowanie maszynami renomowanej firmy Lagler.</li>
                     <li>Schody i balustrady wewnątrz pomieszczeń.</li>
-                    <li>Balustrady i stolarka na zewnątrz.</li>
                     <li>Także balustrady wmocowane w drawno w schodach.</li>
                 </ul>
             </div>         
@@ -116,9 +115,10 @@
             </div> 
         </div>
         <div class="container">
-
             <t:insertAttribute name="breadcrumbs" ignore="false" />
-            <t:insertAttribute name="menu" ignore="true"/>
+            <ul id="menu" class="menu">
+                <t:insertAttribute name="menu" ignore="true"/>
+            </ul>
         </div>
 
         <div class="container">

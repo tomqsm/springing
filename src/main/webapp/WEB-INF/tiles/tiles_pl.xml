@@ -5,7 +5,6 @@
 <tiles-definitions>
   
     <definition extends="m-masterpage" name="index-mobile">
-        <put-attribute name="title" value="Podłogi i stolarka." type="string"  />
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/index/m-index.jsp" />
     </definition>

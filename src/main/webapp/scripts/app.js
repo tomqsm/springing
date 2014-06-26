@@ -49,6 +49,16 @@ $.widget("lw.closeIt", {
         }
     }
 });
+$.widget("lw.menuSelector", {
+    options: {
+        selected: $.noop
+    },
+    _create: function() {
+        console.log(this.options.selected)
+        $('#menu').find('#' + this.options.selected).parent().addClass('selected');
+        
+    }
+});
 $.widget("lw.getJson", {
     options: {
         templateEl: $.noop,
