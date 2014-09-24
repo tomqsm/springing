@@ -6,3 +6,4 @@ CREATE TABLE person(
 );
 insert into person values (DEFAULT, 'Tomasz', 'Kuśmierczyk', DEFAULT);
 drop table person;
+select * from person;

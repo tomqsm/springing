@@ -1,35 +1,50 @@
-DROP TABLE IF EXISTS lf.users CASCADE;
-DROP TABLE IF EXISTS lf.pages CASCADE;
-DROP SEQUENCE IF EXISTS lf.users_seq;
-DROP SEQUENCE IF EXISTS lf.pages_seq;
-
-CREATE SEQUENCE lf.users_seq START 1;
-CREATE TABLE lf.users(
-	id integer constraint users_primary PRIMARY KEY DEFAULT nextval('lf.users_seq'),
-	fname varchar(40),
-        lname varchar(40),
-        inserted timestamp
+DROP TABLE activityassociation;
+DROP TABLE activityproperty; -- must go before activity table to which has a foreign key
+DROP TABLE activity;
+CREATE TABLE activity (
+    activityid int generated always as identity (start with 1, increment by 1),
+    name varchar(100),
+    created TIMESTAMP,
+    constraint activityidpk primary key (activityid)
 );
--- http://stackoverflow.com/questions/15530899/insert-statement-in-postgres-for-data-type-timestamp-without-time-zone-not-null
-ALTER TABLE lf.users ALTER inserted set default now();
-
-INSERT INTO lf.users VALUES(default,'Tomasz', 'Jarzębski');
-INSERT INTO lf.users VALUES(default,'Józef', 'Żabiński');
-INSERT INTO lf.users VALUES(default,'Andrzej', 'Stefański');
-INSERT INTO lf.users VALUES(default,'Jarek', 'Kuźmiński');
--- user may change their name and you want to keep history of those changes
-
-CREATE SEQUENCE lf.pages_seq START 1;
-
-CREATE TABLE lf.pages (
-    id integer constraint pages_primary PRIMARY KEY DEFAULT nextval('lf.pages_seq'),
-    title varchar(120),
-    menu varchar(120),
-    content text,
-    language varchar(3)
+CREATE TABLE activityproperty (
+    activitypropertyid int generated always as identity (start with 1, increment by 1),
+    activityid int,
+    name varchar(100),
+    value varchar(255),
+    created TIMESTAMP,
+    constraint activitypropertyidpk primary key (activitypropertyid),
+    constraint activityfk foreign key (activityid) references activity(activityid)
 );
+CREATE TABLE activityassociation (
+    activityassociationid int generated always as identity (start with 1, increment by 1),
+    activity1id int,
+    activity2id int,
+    created TIMESTAMP,
+    constraint activityassociationidpk primary key (activityassociationid),
+    constraint activity1fk foreign key (activity1id) references activity(activityid),
+    constraint activity2fk foreign key (activity2id) references activity(activityid)
+);
+insert into activity values (default, 'project', current_timestamp);
+insert into activity values (default, 'story', current_timestamp);
+insert into activity values (default, 'task', current_timestamp);
+insert into activity values (default, 'problem', current_timestamp);
+insert into activity values (default, 'pause', current_timestamp);
 
-INSERT INTO lf.pages VALUES(default, 'Strona gówna', 'Strona gówna', 'Zawartość strony', 'pol');
-INSERT INTO lf.pages VALUES(default, 'Index page', 'Index page', 'Index page content', 'eng');
 
-select * from lf.pages where title like '%Index%';
+insert into activityproperty values (default, 1, 'name', 'esg04',current_timestamp);
+insert into activityproperty values (default, 1, 'description', 'projekt SOA Oracle, BPEL',current_timestamp);
+insert into activityproperty values (default, 1, 'start', '25/03/2014',current_timestamp);
+insert into activityproperty values (default, 1, 'end', null, current_timestamp);
+insert into activityproperty values (default, 3, 'name', 'Bug fix: 138520', current_timestamp);
+insert into activityproperty values (default, 3, 'description', ' - Cash Out refund return error', current_timestamp);
+insert into activityproperty values (default, 4, 'connectivity', 'Something goes wrong with server connection.', current_timestamp);
+insert into activityproperty values (default, 4, 'placek fault fixed', 'Sławek fixed that.', current_timestamp);
+
+insert into ACTIVITYASSOCIATION values (default, 1, 2, current_timestamp);
+insert into ACTIVITYASSOCIATION values (default, 2, 3, current_timestamp);
+insert into ACTIVITYASSOCIATION values (default, 3, 4, current_timestamp);
+
+select * from activity o join activityproperty op on op.activityid=o.activityid;
+
+select * from ACTIVITYPROPERTY where "VALUE" like 'es%';
