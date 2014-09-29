@@ -1,5 +1,6 @@
-package biz.letsweb.lukasfloorspring.dataaccess;
+package biz.letsweb.lukasfloorspring.dataaccess.mappers;
 
+import biz.letsweb.lukasfloorspring.dataaccess.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;

@@ -9,5 +9,5 @@
               password="${db.password}" 
               type="javax.sql.DataSource" 
               url="${db.url}" 
-              username="${db.username}"/>
+    />
 </Context>

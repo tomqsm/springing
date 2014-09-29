@@ -15,7 +15,7 @@
         </put-list-attribute>
         <!--menu format menuDisplay|href|id|breadcrumbDisplay-->
         <put-list-attribute name="menuList">
-            <add-attribute value="Strona startowa.|/|home|Podłogi i stolarka"/>
+            <add-attribute value="Strona startowa.|/|home|Strona startowa"/>
             <add-attribute value="Cennik|/cennik|cennik|Cennik usług"/>
             <add-attribute value="Kontakt|/kontakt|kontakt|Dane kontaktowe"/>
             <add-attribute value="Firma|/firma|firma|Informacje o firmie"/>

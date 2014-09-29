@@ -7,7 +7,7 @@
     <definition name="masterpage_en" extends="masterpage">
         <!--menu format menuDisplay|href|id|breadcrumbDisplay-->
         <put-list-attribute name="menuList">
-            <add-attribute value="Floors and carpentry.|/|home|Floors and carpentry"/>
+            <add-attribute value="Floors and carpentry.|/|home|Home"/>
             <add-attribute value="Prices|/cennik|cennik|Price list"/>
             <add-attribute value="Contact|/kontakt|kontakt|Contact details"/>
             <add-attribute value="Firm|/firma|firma|About lukasfloor"/>

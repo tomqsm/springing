@@ -1,3 +1,5 @@
+CREATE SCHEMA lksflr;
+DROP TABLE person;
 DROP TABLE activityassociation;
 DROP TABLE activityproperty; -- must go before activity table to which has a foreign key
 DROP TABLE activity;
@@ -45,6 +47,6 @@ insert into ACTIVITYASSOCIATION values (default, 1, 2, current_timestamp);
 insert into ACTIVITYASSOCIATION values (default, 2, 3, current_timestamp);
 insert into ACTIVITYASSOCIATION values (default, 3, 4, current_timestamp);
 
-select * from activity o join activityproperty op on op.activityid=o.activityid;
+select * from activity a join activityproperty ap on ap.activityid=a.activityid and ap.ACTIVITYID = (select activityid from ACTIVITY where "NAME" = 'project');
 
 select * from ACTIVITYPROPERTY where "VALUE" like 'es%';

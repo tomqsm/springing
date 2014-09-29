@@ -1,5 +1,7 @@
-package biz.letsweb.lukasfloorspring.dataaccess;
+package biz.letsweb.lukasfloorspring.dataaccess.dao;
 
+import biz.letsweb.lukasfloorspring.dataaccess.mappers.PriceLineMapper;
+import biz.letsweb.lukasfloorspring.dataaccess.model.PriceLine;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +13,8 @@ import org.springframework.stereotype.Service;
  * 
  * @author Tomasz
  */
-@Service("usersDao")
-public class JdbcUsersDao {
+@Service("pricesDao")
+public class JdbcPriceLineDao {
 
   private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -20,20 +22,20 @@ public class JdbcUsersDao {
     this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
   }
 
-  public User findUserById(int id){
-        String sql = "select * from lf.users where id=:id";
+  public PriceLine findUserById(int id){
+        String sql = "select * from lksflr.prices where id=:id";
         Map<String,Object> params = new HashMap<>();
         params.put("id", id);
-        return jdbcTemplate.queryForObject(sql, params, new UserMapper());
+        return jdbcTemplate.queryForObject(sql, params, new PriceLineMapper());
     }
 
-  public List<User> findAll() {
-    String sql = "select * from lf.users";
-    return jdbcTemplate.query(sql, new UserMapper());
+  public List<PriceLine> findAll() {
+    String sql = "select * from LKSFLR.prices";
+    return jdbcTemplate.query(sql, new PriceLineMapper());
   }
 
   public void deleteById(int id){
-      String sql = "delete from lf.users where id=:id";
+      String sql = "delete from lksflr.prices where id=:id";
       Map<String,Object> params = new HashMap<>();
       params.put("id", id);
       jdbcTemplate.update(sql, params);

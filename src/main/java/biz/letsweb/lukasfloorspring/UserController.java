@@ -1,6 +1,6 @@
 package biz.letsweb.lukasfloorspring;
 
-import biz.letsweb.lukasfloorspring.dataaccess.JdbcUsersDao;
+import biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcUsersDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

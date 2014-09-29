@@ -1,9 +1,17 @@
-CREATE TABLE person(
-    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT person_pk PRIMARY KEY,
-    firstName VARCHAR(100) DEFAULT NULL,
-    lastName VARCHAR(100) DEFAULT NULL,
-    create_ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+drop table "USERS";
+drop table prices;
+CREATE TABLE USERS(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT users_pk PRIMARY KEY,
+    fname VARCHAR(100) DEFAULT NULL,
+    lname VARCHAR(100) DEFAULT NULL,
+    inserted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-insert into person values (DEFAULT, 'Tomasz', 'Kuśmierczyk', DEFAULT);
-drop table person;
-select * from person;
+CREATE TABLE prices(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT person_pk PRIMARY KEY,
+    service VARCHAR(100) DEFAULT NULL,
+    unit VARCHAR(100) DEFAULT NULL,
+    price double DEFAULT 0,
+    inserted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+insert into USERS values (DEFAULT, 'Tomasz', 'Kuśmierczyk', DEFAULT);
+insert into prices values (DEFAULT, 'Czyszczenie podłogi', 'metr kwad.', 14, DEFAULT);

@@ -15,7 +15,7 @@
 <s:url var="jquery_cookie" value="/resources/scripts/lib/jquery.cookie.js"  />
 <s:url var="jquery_innerfade" value="/resources/scripts/lib/jquery.innerfade.js"  />
 <s:url var="underscore" value="/resources/scripts/lib/underscore.js"  />
-<s:url var="app_min" value="/resources/scripts/app.js"  />
+<s:url var="app_min" value="/resources/scripts/app-min.js"  />
 <s:url var="widgets" value="/resources/scripts/widgets.js"  />
 <t:importAttribute name="pagejs" toName="pagejs"/>
 <t:importAttribute name="title" toName="pageTitle" scope="request"/>

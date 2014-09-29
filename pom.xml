@@ -104,11 +104,11 @@
             (depends on spring-core, spring-beans, spring-context, spring-tx)
             Define this if you need ORM (org.springframework.orm.*)
         -->
-        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${org.springframework.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!--
             Object-to-XML Mapping (OXM) abstraction and integration with JAXB, JiBX, Castor, XStream, and XML Beans.
@@ -146,11 +146,11 @@
             Spring MVC for Portlet Environments (depends on spring-core, spring-beans, spring-context, spring-web)
             Define this if you use Spring MVC with a Portlet Container (org.springframework.web.portlet.*)
         -->
-        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc-portlet</artifactId>
             <version>${org.springframework.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!-- @Inject -->
         <dependency>
@@ -272,6 +272,11 @@
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.11.1.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

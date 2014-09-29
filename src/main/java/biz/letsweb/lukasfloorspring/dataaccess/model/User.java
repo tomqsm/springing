@@ -1,4 +1,4 @@
-package biz.letsweb.lukasfloorspring.dataaccess;
+package biz.letsweb.lukasfloorspring.dataaccess.model;
 
 import java.sql.Timestamp;
 

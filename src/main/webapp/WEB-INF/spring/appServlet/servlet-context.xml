@@ -25,11 +25,13 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <resources location="/, classpath:/META-INF/web-resources/" mapping="/resources/**"/>
     
-    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/lukasfloorspring_ds"/>
+    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/lksflr_ds"/>
     
-    <beans:bean id="usersDao" class="biz.letsweb.lukasfloorspring.dataaccess.JdbcUsersDao"
+    <beans:bean id="usersDao" class="biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcUsersDao"
                 p:dataSource-ref="dataSource" />
-    <beans:bean id="pagesDao" class="biz.letsweb.lukasfloorspring.dataaccess.JdbcPagesDao"
+    <beans:bean id="pagesDao" class="biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcPagesDao"
+                p:dataSource-ref="dataSource" />
+    <beans:bean id="pricesDao" class="biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcPriceLineDao"
                 p:dataSource-ref="dataSource" />
     
     <!--    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
