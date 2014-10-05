@@ -1,7 +1,7 @@
 package biz.letsweb.lukasfloorspring.dataaccess.dao;
 
-import biz.letsweb.lukasfloorspring.dataaccess.model.Page;
 import biz.letsweb.lukasfloorspring.dataaccess.mappers.PageMapper;
+import biz.letsweb.lukasfloorspring.dataaccess.model.Page;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;

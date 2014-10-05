@@ -11,7 +11,7 @@
 <div>
     <ol>
         <c:forEach var="price" items="${prices}" varStatus="loop">
-            <li>${loop.count}) ${price.service} - ${price.unit} - ${price.price} PLN</li>
+            <li>${loop.count}) ${price.service} - ${price.unit} - ${price.priceMax} PLN</li>
         </c:forEach> 
     </ol>
 </div>

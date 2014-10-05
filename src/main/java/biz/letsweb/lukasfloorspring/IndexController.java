@@ -11,6 +11,7 @@ import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -42,12 +43,22 @@ public class IndexController {
   @Autowired
   private Message myMessage;
 
+  @Value("${spring.social.facebook.appId}")
+  private String facebookClientId;
+
+  @Value("${spring.social.facebook.appSecret}")
+  private String facebookClientSecret;
+
+  // @Autowired
+  // private Facebook facebook;
+
   @RequestMapping(method = RequestMethod.GET)
   public String sayHello(ModelMap model, Locale locale) {
     model.addAttribute("date", new Date());
     // model.addAttribute("user", user);
     final String message = messageSource.getMessage("welcome", new Object[] {}, locale);
     logger.info("message: {}", message);
+    logger.info("facebookClientId: {}, secret: {}", facebookClientId, facebookClientSecret);
     myMessage.setMessage("myMessage");
     myMessage.setType(message);
     model.addAttribute("message", myMessage);
@@ -79,6 +90,18 @@ public class IndexController {
     return "kontakt";
   }
 
+  // @RequestMapping(value = "/fb", method = RequestMethod.GET)
+  // public String goFb(ModelMap model) {
+  // if (!facebook.isAuthorized()) {
+  // return "redirect:/connect/facebook";
+  // }
+  // model.addAttribute(facebook.userOperations().getUserProfile());
+  // PagedList<Post> homeFeed = facebook.feedOperations().getHomeFeed();
+  // model.addAttribute("feed", homeFeed);
+  //
+  // return "kontakt";
+  // }
+
   @RequestMapping(value = "/firma", method = RequestMethod.GET)
   public String goFirm(ModelMap model) {
     return "firma";
@@ -101,6 +124,14 @@ public class IndexController {
     am.name = user.getFname() + " " + user.getLname();
     am.staff = new String[] {"kibol1", "kibol2"};
     return am;
+  }
+
+  @Async
+  @RequestMapping(value = "/ajax/prices", method = {RequestMethod.GET, RequestMethod.HEAD}, headers = "x-requested-with=XMLHttpRequest")
+  public @ResponseBody
+  List<PriceLine> ajaxPriceslo(ModelMap model) {
+    List<PriceLine> prices = pricesDao.findAll();
+    return prices;
   }
 
   @RequestMapping(value = "/login", method = RequestMethod.GET)

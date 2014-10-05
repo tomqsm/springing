@@ -1,7 +1,7 @@
 package biz.letsweb.lukasfloorspring.dataaccess.dao;
 
-import biz.letsweb.lukasfloorspring.dataaccess.model.User;
 import biz.letsweb.lukasfloorspring.dataaccess.mappers.UserMapper;
+import biz.letsweb.lukasfloorspring.dataaccess.model.User;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

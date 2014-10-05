@@ -7,15 +7,15 @@
              xmlns:context="http://www.springframework.org/schema/context"
              xmlns:security="http://www.springframework.org/schema/security"
              xsi:schemaLocation="http://www.springframework.org/schema/mvc
-http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 http://www.springframework.org/schema/jee
-http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-3.1.xsd
+http://www.springframework.org/schema/context/spring-context-3.2.xsd
 http://www.springframework.org/schema/security
-http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     
     <annotation-driven />
     
@@ -33,6 +33,9 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
                 p:dataSource-ref="dataSource" />
     <beans:bean id="pricesDao" class="biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcPriceLineDao"
                 p:dataSource-ref="dataSource" />
+    <beans:bean id="facebook" class="org.springframework.social.facebook.api.impl.FacebookTemplate" />
+<!--    <beans:bean id="indexController" class="biz.letsweb.lukasfloorspring.IndexController"
+                p:facebook-ref="facebook" />-->
     
     <!--    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/" />
@@ -106,4 +109,20 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     <!--<annotation-driven validator="validator"/>-->
     <!-- Enable controller method level security -->
     <security:global-method-security pre-post-annotations="enabled"/>
+        <!--<context:property-placeholder location="classpath*:*.properties"/>-->
+        <!--    the below from 
+    http://stackoverflow.com/questions/13297157/best-ways-to-deal-with-properties-values-in-xml-file-in-spring-maven-and-eclips
+    work-->
+    <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <beans:property name="locations">
+            <beans:list>
+                 <!--Default location inside war file--> 
+                <beans:value>classpath:application.properties</beans:value>
+                 <!--Environment specific location, a fixed path on server--> 
+                <!--<beans:value>file:c:\Users\Tomasz\application.properties</beans:value>-->
+            </beans:list>
+        </beans:property>
+        <beans:property name="ignoreResourceNotFound" value="true"/>
+    </beans:bean>
+
 </beans:beans>

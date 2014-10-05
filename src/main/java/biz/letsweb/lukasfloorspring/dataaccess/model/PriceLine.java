@@ -11,7 +11,8 @@ public class PriceLine {
   private int id;
   private String service;
   private String unit;
-  private Double price;
+  private Double priceMin;
+  private Double priceMax;
   private Timestamp inserted;
 
   public int getId() {
@@ -38,12 +39,20 @@ public class PriceLine {
     this.unit = unit;
   }
 
-  public Double getPrice() {
-    return price;
+  public Double getPriceMin() {
+    return priceMin;
   }
 
-  public void setPrice(Double price) {
-    this.price = price;
+  public void setPriceMin(Double priceMin) {
+    this.priceMin = priceMin;
+  }
+
+  public Double getPriceMax() {
+    return priceMax;
+  }
+
+  public void setPriceMax(Double priceMax) {
+    this.priceMax = priceMax;
   }
 
   public Timestamp getInserted() {

@@ -17,7 +17,8 @@ public class PriceLineMapper implements RowMapper<PriceLine> {
     user.setId(rs.getInt("id"));
     user.setService(rs.getString("service"));
     user.setUnit(rs.getString("unit"));
-    user.setPrice(rs.getDouble("price"));
+    user.setPriceMin(rs.getDouble("priceMin"));
+    user.setPriceMax(rs.getDouble("priceMax"));
     user.setInserted(rs.getTimestamp("inserted"));
     return user;
   }
