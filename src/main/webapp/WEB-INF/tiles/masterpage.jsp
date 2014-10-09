@@ -15,9 +15,9 @@
 <s:url var="jquery_cookie" value="/resources/scripts/lib/jquery.cookie.js"  />
 <s:url var="jquery_innerfade" value="/resources/scripts/lib/jquery.innerfade.js"  />
 <s:url var="underscore" value="/resources/scripts/lib/underscore.js"  />
-<s:url var="app_min" value="/resources/scripts/app-min.js"  />
+<s:url var="app_min" value="/resources/scripts/app.js"  />
 <s:url var="widgets" value="/resources/scripts/widgets.js"  />
-<t:importAttribute name="pagejs" toName="pagejs"/>
+<t:importAttribute name="pagejs" toName="pagejs" scope="request"/>
 <t:importAttribute name="title" toName="pageTitle" scope="request"/>
 <t:importAttribute name="menuList" toName="menuList" scope="request"/>
 <t:importAttribute name="breadcrumbList" toName="breadcrumbList" scope="request" />
@@ -42,10 +42,6 @@
         <script src="${underscore}"></script>
         <script src="<s:url value="/resources/scripts/lib/hashchange.js"/>"></script>
         <script src="<s:url value="/resources/scripts/lib/jquery.easytabs.min.js"/>"></script>
-        <!--pagejs section-->
-        <c:if test="${not empty pagejs}" >
-            <!--<script src="${pagejs}"></script>-->
-        </c:if>
         <title>${pageTitle}</title>
         <script>
             var app_context = '<s:url value="/"/>';
@@ -66,14 +62,20 @@
                     containerheight: '3em'
                 });
                 $('#ajaxer').getJson({url: 'ajax', templateEl: $("script.template"),
-                        handleData: function(data, options) {
-                            options.el.html(options.template({json: data}));
-                            $("#created li:nth-child(2)").css('color', 'red');
-                        }
+                    handleData: function(data, options) {
+                        options.el.html(options.template({json: data}));
+                        $("#created li:nth-child(2)").css('color', 'red');
+                    }
                 });
-                        $('#menu').menuSelector({selected: '${f:psvParser(menuList,breadcrumbList.get(fn:length(breadcrumbList)-1),'ID')}'});
+                
+                $('#menu').menuSelector({selected: '${f:psvParser(menuList,breadcrumbList.get(fn:length(breadcrumbList)-1),'ID')}'});
             });
         </script>
+        <script src="${app_min}"></script>
+        <!--pagejs section-->
+        <c:if test="${not empty pagejs}" >
+            <script src="<s:url value="${pagejs}"/>"></script>
+        </c:if>
     </head>
     <body>
         <div class="container cookiesAlert">Strona lukasfloor.com używa plików 'cookies' aby 1) umożliwić zmianę języka strony 2) tworzyć statystki odwiedzin 3) umożliwić kontinuum konwersacji z serwerem (tworzyć sesję). Jeśli nie zgadzasz się na używanie 'cookies' prosimy je zablokować w ustawieniach przeglądarki.<br/><a href="#">więcej informacji</a>
@@ -127,7 +129,7 @@
         <div class="container">
             <div id="ajaxer">kliknij tutaj</div>
         </div>
-        <script src="${app_min}"></script>
+
     </body>
     <!-- BEGIN: Underscore Template Definition. -->
     <script type="text/template" class="template">

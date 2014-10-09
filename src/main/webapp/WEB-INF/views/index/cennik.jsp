@@ -8,10 +8,21 @@
 <%@taglib prefix="t" uri="http://tiles.apache.org/tags-tiles" %>
 <% pageContext.setAttribute("now", new DateTime());%>
 <h1><c:out value="${pageTitle}" /></h1>
-<div>
-    <ol>
-        <c:forEach var="price" items="${prices}" varStatus="loop">
-            <li>${loop.count}) ${price.service} - ${price.unit} - ${price.priceMax} PLN</li>
-        </c:forEach> 
-    </ol>
-</div>
+
+<div id="pricesDiv">sdsdsd</div>
+<!-- BEGIN: Underscore Template Definition. -->
+    <script type="text/template" class="prices">
+        czesc <@= json[0].service @>
+      <table id="created" style="float:right; padding: 3px 3px 3px 3px">
+        <@_.each(json, function(item, iter){ @>
+        <tr>
+            <td style="float:right; padding: 3px 3px 3px 3px"><@=iter+1@>)</td>
+            <td><@=item.service@></td>
+            <td style="float:right"><@=item.priceMax@></td>
+            <td>PLN</td>
+            <td style="float:right"><sup><@=item.unit@></sup></td>
+        </tr>
+        <@});@>
+      </table>
+    </script>
+    <!-- END: Underscore Template Definition. -->
