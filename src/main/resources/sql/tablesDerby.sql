@@ -38,5 +38,5 @@ insert into prices values (DEFAULT, 'Szlifowanie czyszczenie wylewki, gruntowani
 insert into prices values (DEFAULT, 'Dodatkowe malowanie.', 'metr^2', 3, 4, DEFAULT);
 insert into prices values (DEFAULT, 'Pomiar wilgotnosci wylewki. Pierwszy punkt 40 PLN.', 'punkt', DEFAULT, 15, DEFAULT);
 insert into prices values (DEFAULT, 'Konserwacjia podlogi olejowanej lub woskowanej.', 'metr^2', 8, 10, DEFAULT);
-insert into prices values (DEFAULT, 'Zrywanie starej wykladziny.', 'metr^2', DEFAULT, 5, DEFAULT);
+insert into prices values (DEFAULT, 'Zrywanie starej wykładziny.', 'metr^2', DEFAULT, 5, DEFAULT);
 insert into prices values (DEFAULT, 'Zrywanie parkietu. Do uzgodnienia.', 'metr^2', DEFAULT, 7, DEFAULT);

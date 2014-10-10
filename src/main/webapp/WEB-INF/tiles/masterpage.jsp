@@ -61,13 +61,6 @@
                     type: 'sequence',
                     containerheight: '3em'
                 });
-                $('#ajaxer').getJson({url: 'ajax', templateEl: $("script.template"),
-                    handleData: function(data, options) {
-                        options.el.html(options.template({json: data}));
-                        $("#created li:nth-child(2)").css('color', 'red');
-                    }
-                });
-                
                 $('#menu').menuSelector({selected: '${f:psvParser(menuList,breadcrumbList.get(fn:length(breadcrumbList)-1),'ID')}'});
             });
         </script>
@@ -126,21 +119,5 @@
         <div class="container">
             <div style=" display: block; float: left;"><t:insertAttribute name="body" /></div>
         </div>
-        <div class="container">
-            <div id="ajaxer">kliknij tutaj</div>
-        </div>
-
     </body>
-    <!-- BEGIN: Underscore Template Definition. -->
-    <script type="text/template" class="template">
-        czesc <@= json.name @>
-        <ul id="created">
-        <@_.each(json.staff, function(i, iter){ @>
-        <li>
-        <@=iter@>) <@=i@>  
-        </li>
-        <@});@>
-        </ul>
-    </script>
-    <!-- END: Underscore Template Definition. -->
 </html>
