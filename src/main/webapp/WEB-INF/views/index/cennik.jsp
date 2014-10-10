@@ -9,18 +9,26 @@
 <% pageContext.setAttribute("now", new DateTime());%>
 <h1><c:out value="${pageTitle}" /></h1>
 
-<div id="pricesDiv">sdsdsd</div>
+<div id="pricesDiv">Ładuje ... </div>
 <!-- BEGIN: Underscore Template Definition. -->
     <script type="text/template" class="prices">
-        czesc <@= json[0].service @>
-      <table id="created" style="float:right; padding: 3px 3px 3px 3px">
+      <table style="float:right; padding: 3px 3px 3px 3px">
+      <tr><th>Lp.</th><th>Usługa</th><th>Cena PLN</th><th>Jednostka</th></tr>
         <@_.each(json, function(item, iter){ @>
         <tr>
             <td style="float:right; padding: 3px 3px 3px 3px"><@=iter+1@>)</td>
             <td><@=item.service@></td>
-            <td style="float:right"><@=item.priceMax@></td>
-            <td>PLN</td>
-            <td style="float:right"><sup><@=item.unit@></sup></td>
+            <td>
+                <@if(item.priceMin > 0){@>
+                 <@=item.priceMin@>
+                 <@='-'@>
+                 <@}@>
+                <@=item.priceMax@>
+            </td>
+            <td><@ if(item.unit === 'metr^2') @>
+                <@='&nbsp;metr<sup>2</sup>'@>
+                <@ else @>
+                <@=item.unit@></td>
         </tr>
         <@});@>
       </table>

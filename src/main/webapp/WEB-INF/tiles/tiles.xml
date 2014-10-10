@@ -37,7 +37,7 @@
 
     <definition extends="masterpage" name="cennik">
         <!--here you can add your own page specific scripts-->
-        <put-attribute name="pagejs" value="resources/scripts/index/cennik.js" />
+        <put-attribute name="pagejs" value="/resources/scripts/index/cennik.js" />
         <!--<put-attribute name="pagejs" value="" />-->
         <put-attribute name="body" value="/WEB-INF/views/index/cennik.jsp" />
         <!--this references index in menuList-->

@@ -141,3 +141,9 @@ a {
 }
 .cookiesAlert a{
 }
+#pricesDiv table {
+    width: 730px;
+}
+#pricesDiv table td{
+    text-align: left;
+}
