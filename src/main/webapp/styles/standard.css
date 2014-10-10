@@ -144,6 +144,22 @@ a {
 #pricesDiv table {
     width: 730px;
 }
-#pricesDiv table td{
-    text-align: left;
+#pricesDiv table th{
+    background-color: #333333;
+}
+#pricesDiv table tr {
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    border-color: #fff;
+}
+
+#pricesDiv table td:nth-child(4){
+    text-align: right;
+}
+#pricesDiv table td:nth-child(3){
+    text-align: right;
+}
+#pricesDiv table td:nth-child(1){
+    text-align: right;
+    padding-right: 5px;
 }
