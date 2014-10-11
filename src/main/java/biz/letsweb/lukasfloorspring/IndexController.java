@@ -65,8 +65,7 @@ public class IndexController {
     model.addAttribute("message", myMessage);
     // sessionContainer.setSessionString("tomasz");
     requestString = "set in index";
-    throw new RuntimeException("mój błąd");
-    // return "index";
+    return "index";
   }
 
   @PreAuthorize("isAuthenticated()")
