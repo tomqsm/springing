@@ -25,6 +25,12 @@ a {
     margin-left: auto;
     width: 950px; /* or 950px */
 }
+.container730 {
+    margin-right: auto;
+    margin-left: auto;
+    width: 720px; /* or 950px */
+    padding: 10px;
+}
 .border {
     border: orange 1px dashed;
 }

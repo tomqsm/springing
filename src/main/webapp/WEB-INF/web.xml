@@ -91,7 +91,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     </servlet-mapping>
     
     <!-- Disables Servlet Container welcome file handling. Needed for compatibility with Servlet 3.0 and Tomcat 7.0 -->
-<!--    <welcome-file-list>
+    <!--    <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>-->
     
@@ -105,9 +105,17 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
         </user-data-constraint>
     </security-constraint>
     <error-page>
-	<error-code>404</error-code>
-	<location>/404</location>
-  </error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500</location>
+    </error-page>
+<!--    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/jsp/error/dispatch-error.jsp</location>
+    </error-page>-->
     <resource-ref>
         <description>My DataSource Reference</description>
         <res-ref-name>${db.jndi.name}</res-ref-name>
