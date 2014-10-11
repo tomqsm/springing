@@ -56,7 +56,8 @@ public class IndexController {
   public String sayHello(ModelMap model, Locale locale) {
     model.addAttribute("date", new Date());
     // model.addAttribute("user", user);
-    final String message = messageSource.getMessage("welcome", new Object[] {}, locale);
+    final String message =
+        messageSource.getMessage("welcome", new Object[] {}, "default welcome", locale);
     logger.info("message: {}", message);
     logger.info("facebookClientId: {}, secret: {}", facebookClientId, facebookClientSecret);
     myMessage.setMessage("myMessage");
@@ -111,6 +112,12 @@ public class IndexController {
   public String error404(ModelMap model) {
     System.out.println("404");
     return "404";
+  }
+
+  @RequestMapping(value = "/500", method = RequestMethod.GET)
+  public String error500(ModelMap model) {
+    System.out.println("500");
+    return "500";
   }
 
   // @RequestMapping(value = "/ajax", method = RequestMethod.GET)
@@ -208,9 +215,10 @@ public class IndexController {
   }
 
   @ExceptionHandler
-  @ResponseBody
+  // @ResponseBody
   public String handleException(Exception ex) {
-    return "Handled exception: " + ex.getMessage();
+    System.out.println(ex.getMessage());
+    return "forward:/500";
   }
 
   public void setMyMessage(Message myMessage) {

@@ -69,7 +69,15 @@
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
         <put-attribute name="body" value="/WEB-INF/views/errors/404.jsp" />
     </definition>
-    
+    <definition extends="masterpage" name="500">
+        <put-attribute name="title" value="Błąd 500." type="string"  />
+        <!--here you can add your own page specific scripts-->
+        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="body" value="/WEB-INF/views/errors/500.jsp" />
+    </definition>
+    <definition name="error" extends="masterpage">
+        <put-attribute name="body" value="/WEB-INF/views/errors/500.jsp" />
+    </definition>
     <definition extends="m-masterpage" name="index-mobile">
         <put-attribute name="title" value="Podłogi i stolarka" type="string"  />
         <put-attribute name="pagejs" value="resources/pages/index/page.js" />
