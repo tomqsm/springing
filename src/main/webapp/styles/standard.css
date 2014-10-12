@@ -23,7 +23,7 @@ a {
 .container {
     margin-right: auto;
     margin-left: auto;
-    width: 950px; /* or 950px */
+    /*width: 950px;  or 950px */
 }
 .container730 {
     margin-right: auto;
@@ -69,7 +69,7 @@ a {
     border-bottom: solid 1px grey;
     /*display: block;*/
     height: 40px;
-    width: 200px;
+    width: 190px;
     line-height: 2.5em;
     padding-left: 10px;
 }
@@ -146,6 +146,21 @@ a {
     display: none;
 }
 .cookiesAlert a{
+}
+.builtDate{
+    font-size: 10px;
+    /*display: block;*/ 
+    float: left;
+}
+.footer {
+    background-color: #666;
+    display: block;
+}
+.width950 {
+    width: 950px;
+}
+#pricesDiv {
+    float: left;
 }
 #pricesDiv table {
     width: 730px;

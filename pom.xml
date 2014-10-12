@@ -13,7 +13,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.springframework.version>3.2.3.RELEASE</org.springframework.version>
         <tiles.version>3.0.1</tiles.version>
-        <jackson.version>1.9.10</jackson.version>
+        <jackson.version>1.9.10</jackson.version>        
+        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+        <built.date>${maven.build.timestamp}</built.date>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <dependencies>
@@ -294,7 +297,16 @@
         <filters>
             <filter>src/main/filters/project.properties</filter>
         </filters>
-
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/webapp/WEB-INF/tiles</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

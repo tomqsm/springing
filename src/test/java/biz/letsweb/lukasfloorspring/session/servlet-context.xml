@@ -103,8 +103,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
         <beans:property name="definitions">
             <beans:list>
                 <!--Scan views directory for Tiles configurations--> 
-                <!--<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>-->
-                <beans:value>classpath:tiles.xml</beans:value>
+                <beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
             </beans:list>
         </beans:property>
     </beans:bean>

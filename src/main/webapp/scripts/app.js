@@ -61,7 +61,7 @@ $.widget("lw.getJson", {
         app_context: app_context,
         url: 'ajax',
         data: '',
-        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + '/resources/images/ajax-loader.gif', style: "visibility:hidden"})
+        ajaxloader: $('<img/>', {id: "ajaxloader", src: resourcesUrl + 'images/ajax-loader.gif', style: "visibility:hidden"})
     },
     _create: function() {
         _.templateSettings = {
@@ -120,7 +120,7 @@ $.widget("lw.getJsonOnLoad", {
         app_context: app_context,
         url: 'ajax',
         data: '',
-        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + '/resources/images/ajax-loader.gif', style: "visibility:hidden"})
+        ajaxloader: $('<img/>', {id: "ajaxloader", src: resourcesUrl + 'images/ajax-loader.gif', style: "visibility:hidden"})
     },
     _create: function() {
         console.log('running');

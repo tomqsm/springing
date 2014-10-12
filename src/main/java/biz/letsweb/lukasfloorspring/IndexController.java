@@ -49,6 +49,9 @@ public class IndexController {
   @Value("${spring.social.facebook.appSecret}")
   private String facebookClientSecret;
 
+  @Value("${built.date}")
+  private String builtDate;
+
   // @Autowired
   // private Facebook facebook;
 
@@ -60,6 +63,7 @@ public class IndexController {
         messageSource.getMessage("welcome", new Object[] {}, "default welcome", locale);
     logger.info("message: {}", message);
     logger.info("facebookClientId: {}, secret: {}", facebookClientId, facebookClientSecret);
+    logger.info("built.date: {}", builtDate);
     myMessage.setMessage("myMessage");
     myMessage.setType(message);
     model.addAttribute("message", myMessage);
@@ -89,6 +93,11 @@ public class IndexController {
   @RequestMapping(value = "/kontakt", method = RequestMethod.GET)
   public String goContact(ModelMap model) {
     return "kontakt";
+  }
+
+  @RequestMapping(value = "/appInfo", method = RequestMethod.GET)
+  public String goAppInfo(ModelMap model) {
+    return "appInfo";
   }
 
   // @RequestMapping(value = "/fb", method = RequestMethod.GET)

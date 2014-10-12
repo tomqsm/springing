@@ -44,7 +44,8 @@
         <script src="<s:url value="/resources/scripts/lib/jquery.easytabs.min.js"/>"></script>
         <title>${pageTitle}</title>
         <script>
-            var app_context = '<s:url value="/"/>';
+            var app_context = '<s:url value="/"/>',
+                    resourcesUrl = '<s:url value="/resources/"/>';
             $(document).ready(function() {
                 $('#cookiesLegalNoteCloser').closeIt();
                 $('#tab-container').easytabs();
@@ -74,7 +75,7 @@
         <div class="container cookiesAlert">Strona lukasfloor.com używa plików 'cookies' aby 1) umożliwić zmianę języka strony 2) tworzyć statystki odwiedzin 3) umożliwić kontinuum konwersacji z serwerem (tworzyć sesję). Jeśli nie zgadzasz się na używanie 'cookies' prosimy je zablokować w ustawieniach przeglądarki.<br/><a href="#">więcej informacji</a>
             <a id="cookiesLegalNoteCloser" href="#"><span style="float: right; padding: 5px; margin-top: 5px;" class="close border">zamknij</span></a>
         </div>
-        <div class="container" style="height: 300px;"> 
+        <div class="container width950" style="height: 300px;"> 
             <div id="topLeftImages" style="float: left">
                 <img src="<s:url value="/resources/images/leftTop/pokuj1.jpg"/>" width="300" height="240"/>
                 <img src="<s:url value="/resources/images/leftTop/pokuj2.jpg"/>" width="300" height="240"/>
@@ -97,27 +98,30 @@
                     <li>Schody i balustrady wewnątrz pomieszczeń.</li>
                     <li>Także balustrady wmocowane w drawno w schodach.</li>
                 </ul>
-            </div>         
+            </div>
             <a href="<s:url value="/"/>${'en' eq pageContext.response.locale ? '?lang=en' : ''}">
                 <img class="" style="position: relative; top: 100px; z-index: 10;" src="<s:url value="/resources/images/logo.png"/>"/>
             </a>
         </div>
-        <div class="container" style="position: relative; top: -90px;">
+        <div class="container width950" style="position: relative; top: -90px;">
             <div class="langBox">
                 <div class="flagLang">
                     <t:insertAttribute name="lang" />
                 </div>
-            </div> 
+            </div>
         </div>
-        <div class="container">
+        <div class="container width950">
             <t:insertAttribute name="breadcrumbs" ignore="false" />
             <ul id="menu" class="menu">
                 <t:insertAttribute name="menu" ignore="true"/>
             </ul>
         </div>
-
-        <div class="container">
-            <div style=" display: block; float: left;"><t:insertAttribute name="body" /></div>
+        <div class="container" style="float:left; clear: right;">
+            <t:insertAttribute name="body" />
+        </div>
+        <div class="container width950" style="clear: left;">
+            <span class="builtDate"><t:insertAttribute name="builtDatePrefix" />&nbsp;</span>
+            <span class="builtDate"><t:insertAttribute name="builtDate" /></span>
         </div>
     </body>
 </html>

@@ -1,4 +1,4 @@
-package biz.letsweb.lukasfloorspring;
+package biz.letsweb.lukasfloorspring.interceptors;
 
 /**
  * Copyright (c) 2010 Mark S. Kolich http://mark.koli.ch

@@ -6,6 +6,8 @@
        
     <definition name="masterpage_en" extends="masterpage">
         <!--menu format menuDisplay|href|id|breadcrumbDisplay-->
+        <put-attribute name="builtDatePrefix" value="built:" />
+        <put-attribute name="builtDate" value="${built.date}" />
         <put-list-attribute name="menuList">
             <add-attribute value="Floors and carpentry.|/|home|Home"/>
             <add-attribute value="Prices|/cennik|cennik|Price list"/>
