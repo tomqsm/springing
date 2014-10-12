@@ -50,7 +50,7 @@ $.widget("lw.menuSelector", {
     _create: function() {
         console.log(this.options.selected)
         $('#menu').find('#' + this.options.selected).parent().addClass('selected');
-        
+
     }
 });
 $.widget("lw.getJson", {
@@ -133,12 +133,11 @@ $.widget("lw.getJsonOnLoad", {
             var templateHtml = this.options['templateEl'];
             this.options.template = _.template(templateHtml.html());
         }
-            this.get();
-
         this.element.prepend(this.options.ajaxloader);
+        this.get();
     },
     _setOption: function(key, value) {
-                console.log('running');
+        console.log('running');
 
         this.options[key] = value;
         this._update();
