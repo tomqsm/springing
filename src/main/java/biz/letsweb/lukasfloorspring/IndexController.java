@@ -71,9 +71,6 @@ public class IndexController {
     myMessage.setMessage("myMessage");
     myMessage.setType(message);
     model.addAttribute("message", myMessage);
-    // sessionContainer.setSessionString("tomasz");
-    requestString = "set in index";
-    // iploggerDao.insertRecord(new IPLoggerLine("1.2.3.4", "sth/sth"));
     return "index";
   }
 

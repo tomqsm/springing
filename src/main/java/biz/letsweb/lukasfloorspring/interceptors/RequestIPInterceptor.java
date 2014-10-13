@@ -18,15 +18,35 @@ public class RequestIPInterceptor extends HandlerInterceptorAdapter {
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
       ModelAndView model) throws Exception {
+
     IPLoggerLine loggerLine = new IPLoggerLine();
-    loggerLine.setIp(request.getRemoteAddr());
+    loggerLine.setIp(getClientIpAddr(request));
     loggerLine.setUrl(request.getRequestURL().toString());
     iploggerDao.insertRecord(loggerLine);
   }
-
 
   public void setIploggerDao(JdbcIPLoggerDao iploggerDao) {
     this.iploggerDao = iploggerDao;
   }
 
+  public String getClientIpAddr(HttpServletRequest request) {
+    String ip = request.getHeader("X-Forwarded-For");
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("Proxy-Client-IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("WL-Proxy-Client-IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("HTTP_CLIENT_IP");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+    }
+    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+      ip = request.getRemoteAddr();
+    }
+    System.out.println("XX" + ip);
+    return ip;
+  }
 }
