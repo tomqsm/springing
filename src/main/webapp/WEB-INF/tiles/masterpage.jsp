@@ -29,7 +29,7 @@
     <head>
         <link rel="shortcut icon" href="<s:url value="/resources/favicon.ico"/>" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+        <!--<meta http-equiv="X-UA-Compatible" content="IE=8" />-->
         <meta name="description" content="Cyklinowanie, podłogi, balustrady, schody, stolarka.">
         <META name="ROBOTS" content="INDEX, FOLLOW">
         <link rel="stylesheet" type="text/css" media="screen" href="<s:url value="/resources/styles/reset.css"/>" />
