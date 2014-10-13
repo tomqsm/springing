@@ -9,7 +9,8 @@ http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     <http use-expressions="true">
         <intercept-url pattern='/*' access='permitAll' />
-        <form-login login-page="/index/login" authentication-failure-url="/index/login/failed"
+        <form-login login-page="/index/login" 
+                    authentication-failure-url="/index/login/failed"
                     default-target-url="/index/admin" />
         <logout logout-success-url="/index"/>
     </http>
