@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+<<<<<<< Updated upstream
 import java.util.TimeZone;
 import java.util.concurrent.Callable;
 import org.slf4j.Logger;
@@ -17,11 +18,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Async;
+=======
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.http.MediaType;
+>>>>>>> Stashed changes
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+<<<<<<< Updated upstream
 import org.springframework.web.bind.annotation.ExceptionHandler;
+=======
+>>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,12 +49,16 @@ public class IndexController {
   @Autowired
   private JdbcUsersDao usersDao;
   @Autowired
+<<<<<<< Updated upstream
   private JdbcPriceLineDao pricesDao;
   @Autowired
+=======
+>>>>>>> Stashed changes
   private MessageSource messageSource;
   // @Autowired
   // private SessionContainer sessionContainer;
   private String requestString;
+<<<<<<< Updated upstream
   @Autowired
   private Message myMessage;
 
@@ -80,10 +95,61 @@ public class IndexController {
   @PreAuthorize("isAuthenticated()")
   @RequestMapping(value = "/admin", method = RequestMethod.GET)
   public String goAdmin(ModelMap model) {
+=======
+
+  @RequestMapping(method = RequestMethod.GET)
+  public String sayHello(ModelMap model, Locale locale) {
+    // final User user = usersDao.findUserById(1);
+    // logger.info("In method ... ");
+    model.addAttribute("date", new Date());
+    // model.addAttribute("user", user);
+    final String message = messageSource.getMessage("welcome", new Object[] {}, locale);
+    logger.info("message: {}", message);
+    model.addAttribute("message", new Message("myMessage", message));
+    // sessionContainer.setSessionString("tomasz");
+    requestString = "set in index";
+    return VIEW_NAME;
+  }
+
+  @PreAuthorize("isAuthenticated()")
+  @RequestMapping(value = "/admin", method = RequestMethod.GET)
+  public String goAdmin(ModelMap model) {
     final User user = usersDao.findUserById(1);
     // logger.info("In method ... ");
     model.addAttribute("date", new Date());
     model.addAttribute("user", user);
+    return "index/admin";
+  }
+
+  @RequestMapping(value = "/login", method = RequestMethod.GET)
+  public String goLogin(ModelMap model) {
+    final User user = usersDao.findUserById(1);
+    // logger.info("In method ... ");
+    model.addAttribute("date", new Date());
+    model.addAttribute("user", user);
+    // System.out.println(sessionContainer.getSessionString());
+    System.out.println(requestString);
+
+    return "index/login";
+  }
+
+  @RequestMapping(value = "/logout", method = RequestMethod.GET)
+  public String goLogout(ModelMap model) {
+    final User user = usersDao.findUserById(1);
+    // logger.info("In method ... ");
+    model.addAttribute("date", new Date());
+    model.addAttribute("user", user);
+    return "index/logout";
+  }
+
+  @RequestMapping(value = "/login/failed", method = RequestMethod.GET)
+  public String goLoginFailed(ModelMap model) {
+>>>>>>> Stashed changes
+    final User user = usersDao.findUserById(1);
+    // logger.info("In method ... ");
+    model.addAttribute("date", new Date());
+    model.addAttribute("user", user);
+<<<<<<< Updated upstream
     return "index/admin";
   }
 
@@ -263,5 +329,13 @@ public class IndexController {
 
   public void setMyMessage(Message myMessage) {
     this.myMessage = myMessage;
+=======
+    return "forward:/index/login";
+  }
+
+  @RequestMapping(value = "/rest/{testString}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  public String restTest(@PathVariable String testString) {
+    return testString;
+>>>>>>> Stashed changes
   }
 }
