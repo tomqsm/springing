@@ -18,8 +18,12 @@ public class RequestIPInterceptor extends HandlerInterceptorAdapter {
   @Override
   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
       ModelAndView model) throws Exception {
+    String ipAddress = request.getHeader("X-FORWARDED-FOR");
+    if (ipAddress == null) {
+      ipAddress = request.getRemoteAddr();
+    }
     IPLoggerLine loggerLine = new IPLoggerLine();
-    loggerLine.setIp(request.getRemoteAddr());
+    loggerLine.setIp(ipAddress);
     loggerLine.setUrl(request.getRequestURL().toString());
     iploggerDao.insertRecord(loggerLine);
   }
