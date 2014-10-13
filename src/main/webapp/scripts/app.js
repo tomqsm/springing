@@ -1,15 +1,21 @@
 var app = (function f() {
-
-    var init = function() {
-        alert('initialising');
+    var pad = function pad(number, length) {
+        var str = "" + number;
+        while (str.length < length) {
+            str = '0' + str;
+        }
+        return str;
     };
-
+    var offset = new Date().getTimezoneOffset();
+    offset = ((offset < 0 ? 'p' : 'm') + // Note the reversed sign!
+            pad(parseInt(Math.abs(offset / 60)), 2) +
+            pad(Math.abs(offset % 60), 2))
+    
     return {
-        inits: function() {
-            init();
-        },
+        getTimezoneOffset: offset
     }
 })();
+
 $.widget("lw.closeIt", {
     options: {
         isCookiesOn: false
@@ -61,7 +67,7 @@ $.widget("lw.getJson", {
         app_context: app_context,
         url: 'ajax',
         data: '',
-        ajaxloader: $('<img/>', {id: "ajaxloader", src: resourcesUrl + 'images/ajax-loader.gif', style: "visibility:hidden"})
+        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + 'resources/images/ajax-loader.gif', style: "visibility:hidden"})
     },
     _create: function() {
         _.templateSettings = {
@@ -90,7 +96,7 @@ $.widget("lw.getJson", {
     get: function() {
         this.options.ajaxloader.css('visibility', 'visible');
         var jqxhr = $.ajax({
-            url: this.options['app_context'] + '' + this.options.url,
+            url: this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTimezoneOffset,
             type: 'GET',
             timeout: 4000
         }).then(
@@ -120,7 +126,7 @@ $.widget("lw.getJsonOnLoad", {
         app_context: app_context,
         url: 'ajax',
         data: '',
-        ajaxloader: $('<img/>', {id: "ajaxloader", src: resourcesUrl + 'images/ajax-loader.gif', style: "visibility:hidden"})
+        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + 'resources/images/ajax-loader.gif', style: "visibility:hidden"})
     },
     _create: function() {
         console.log('running');
@@ -134,6 +140,7 @@ $.widget("lw.getJsonOnLoad", {
             this.options.template = _.template(templateHtml.html());
         }
         this.element.prepend(this.options.ajaxloader);
+        console.log(this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTimezoneOffset);
         this.get();
     },
     _setOption: function(key, value) {
@@ -149,7 +156,7 @@ $.widget("lw.getJsonOnLoad", {
     get: function() {
         this.options.ajaxloader.css('visibility', 'visible');
         var jqxhr = $.ajax({
-            url: this.options['app_context'] + '' + this.options.url,
+            url: this.options['app_context'] + '' + this.options.url + '?tzo="' + app.getTimezoneOffset +'"',
             type: 'GET',
             timeout: 4000
         }).then(

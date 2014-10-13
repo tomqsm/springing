@@ -4,9 +4,12 @@ import biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcPriceLineDao;
 import biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcUsersDao;
 import biz.letsweb.lukasfloorspring.dataaccess.model.PriceLine;
 import biz.letsweb.lukasfloorspring.dataaccess.model.User;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.WebAsyncTask;
 
@@ -69,6 +73,7 @@ public class IndexController {
     model.addAttribute("message", myMessage);
     // sessionContainer.setSessionString("tomasz");
     requestString = "set in index";
+    // iploggerDao.insertRecord(new IPLoggerLine("1.2.3.4", "sth/sth"));
     return "index";
   }
 
@@ -145,7 +150,33 @@ public class IndexController {
   @Async
   @RequestMapping(value = "/ajax/prices", method = {RequestMethod.GET, RequestMethod.HEAD}, headers = "x-requested-with=XMLHttpRequest")
   public @ResponseBody
-  List<PriceLine> ajaxPriceslo(ModelMap model) {
+  List<PriceLine> ajaxPrices(@RequestParam("tzo") String tzo, ModelMap model) {
+    System.out.println(tzo);
+    final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
+    final SimpleDateFormat sdf = new SimpleDateFormat(DATEFORMAT);
+    sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+    final String utcTime = sdf.format(new Date());
+
+    Calendar c = Calendar.getInstance();
+    System.out.println("current: " + c.getTime());
+
+    TimeZone z = c.getTimeZone();
+    int offset = z.getRawOffset();
+    if (z.inDaylightTime(new Date())) {
+      offset = offset + z.getDSTSavings();
+    }
+    int offsetHrs = offset / 1000 / 60 / 60;
+    int offsetMins = offset / 1000 / 60 % 60;
+
+    System.out.println("offset: " + offsetHrs);
+    System.out.println("offset: " + offsetMins);
+
+    c.add(Calendar.HOUR_OF_DAY, (-offsetHrs));
+    c.add(Calendar.MINUTE, (-offsetMins));
+
+    System.out.println("GMT Time: " + c.getTime());
+
+    logger.info("client timezoneOffset: {}", tzo);
     List<PriceLine> prices = pricesDao.findAll();
     return prices;
   }

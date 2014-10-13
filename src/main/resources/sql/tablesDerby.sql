@@ -14,6 +14,13 @@ CREATE TABLE prices(
     priceMax double DEFAULT 0,
     inserted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE IPLOGS(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT iplogs_pk PRIMARY KEY,
+    ip VARCHAR(100) DEFAULT NULL,
+    url VARCHAR(100) DEFAULT NULL,
+    inserted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+insert into IPLOGS values (DEFAULT, '1.2.3.4', '/lukasfloor', DEFAULT);
 insert into USERS values (DEFAULT, 'Łukasz', 'Dożak', DEFAULT);
 insert into prices values (DEFAULT, 'Czyszczenie podłogi', 'metr^2',DEFAULT, 14, DEFAULT);
 insert into prices values (DEFAULT, 'Szlifowanie, polerowanie, trzykrotne malowanie.', 'metr^2', DEFAULT, 30, DEFAULT);

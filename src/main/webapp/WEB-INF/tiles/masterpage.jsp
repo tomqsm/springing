@@ -44,8 +44,7 @@
         <script src="<s:url value="/resources/scripts/lib/jquery.easytabs.min.js"/>"></script>
         <title>${pageTitle}</title>
         <script>
-            var app_context = '<s:url value="/"/>',
-                    resourcesUrl = '<s:url value="/resources/"/>';
+            var app_context = '<s:url value="/"/>';
             $(document).ready(function() {
                 $('#cookiesLegalNoteCloser').closeIt();
                 $('#tab-container').easytabs();

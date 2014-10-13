@@ -14,7 +14,7 @@
         <org.springframework.version>3.2.3.RELEASE</org.springframework.version>
         <tiles.version>3.0.1</tiles.version>
         <jackson.version>1.9.10</jackson.version>        
-        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+        <maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
         <built.date>${maven.build.timestamp}</built.date>
         <maven.test.skip>true</maven.test.skip>
     </properties>
