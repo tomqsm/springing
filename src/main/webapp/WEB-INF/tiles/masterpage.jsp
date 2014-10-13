@@ -35,11 +35,11 @@
         <link rel="stylesheet" type="text/css" media="screen" href="<s:url value="/resources/styles/reset.css"/>" />
         <link rel="stylesheet" type="text/css" media="screen" href="<s:url value="/resources/styles/standard.css"/>" />
         <link rel="stylesheet" type="text/css" media="screen" href="${localised_css_url}" />
-        <script src="${jquery_core}"></script>
-        <script src="${jquery_ui}"></script>
-        <script src="${jquery_cookie}"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
         <script src="${jquery_innerfade}"></script>
-        <script src="${underscore}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
         <script src="<s:url value="/resources/scripts/lib/hashchange.js"/>"></script>
         <script src="<s:url value="/resources/scripts/lib/jquery.easytabs.min.js"/>"></script>
         <title>${pageTitle}</title>
