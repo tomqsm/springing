@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.async.WebAsyncTask;
 
 @Controller
@@ -133,6 +135,7 @@ public class IndexController {
 
   // @RequestMapping(value = "/ajax", method = RequestMethod.GET)
   @Async
+  @ResponseStatus(HttpStatus.OK)
   @RequestMapping(value = "/ajax", method = {RequestMethod.GET, RequestMethod.HEAD}, headers = "x-requested-with=XMLHttpRequest")
   public @ResponseBody
   AjaxModel ajax(ModelMap model) throws InterruptedException {
@@ -145,6 +148,7 @@ public class IndexController {
   }
 
   @Async
+  @ResponseStatus(HttpStatus.OK)
   @RequestMapping(value = "/ajax/prices", method = {RequestMethod.GET, RequestMethod.HEAD}, headers = "x-requested-with=XMLHttpRequest")
   public @ResponseBody
   List<PriceLine> ajaxPrices(@RequestParam("tzo") String tzo, ModelMap model) {
