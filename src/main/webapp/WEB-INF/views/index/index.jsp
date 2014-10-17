@@ -18,23 +18,35 @@
             <li class='tab'><a href="#balustrady">Balustrady</a></li>
         </ul>
         <div id="podłogi">
-            <h2>Robię super podłogi.</h2>
-            <p>Podłoga – element wykańczający górną część stropu; posadzka jest elementem składowym podłogi. Zapewnia izolację termiczną, akustyczną i przeciwwilgociową, przenosi obciążenia równomiernie rozłożone i skupione, jest płaska i przystosowana do tego, aby mógł po niej odbywać się ruch.</p>
+            <h2>Podłoga.</h2>
+            <p>Specjalizuję się w instalowaniu i serwisie podłóg.
+                Serdecznie polecam swoim klientom podłogi drewniane.
+                Podłoga taka zapewnia izolację termiczną, akustyczną, przeciwwilgociową, 
+                i przenosi obciążenia równomiernie. Jest trwała i dobrze przystosowana do tego, 
+                aby mógł po niej odbywać się ruch.</p>
         </div>
         <div id="cyklinowanie">
             <h2>Szpachlowanie</h2>
-            <p>Szczeliny lub innego rodzaju ubytki w drewnie mogą zostać wypełnione, dzieki czemu podłoga będzie jak blat stołu.</p>
+            <p>Gdy w Twojej podłodze są szczeliny lub innego rodzaju ubytki, 
+                które Twoim zdaniem bardziej szpecą niż 
+                dodają oryginalności, mogą zostać wypełnione, 
+                a podłoga będzie lita jak blat stołu.</p>
             <h2>Olejowanie</h2>
-            <p>Przy użyciu odpowiedniego oleju można uzyskać ciekawe odcienie na wyszlifowanej podłogi. Można podłogę ściemnić nieco nadajac jej odcień wędzonego dębu, lub przeciwnie - rozjaśnić. </p>
+            <p>Przy użyciu odpowiedniego oleju do podłogi można uzyskujemy urokliwe odcienie 
+                wyszlifowanej podłogi. Można ją na przykład lekko przyciemnić nadajac 
+                lub przeciwnie - rozjaśnić.</p>
             <h2>Lakierowanie</h2>
-            <p>Dzięki zastosowaniu stosownych lakierów, na sam koniec odnowy podłogi można uzyskać różnego rodzaju efekty połyskowe. Można te efekty grupować w trzy charakterystyczne grupy: efekty matowe, pół matowe i pełno połyskowe.</p>
+            <p>Dzięki zastosowaniu stosownych lakierów, uzyskujemy różnego rodzaju efekty połyskowe:
+                matowe, pół matowe i pełno połyskowe.</p>
         </div>
         <div id="schody">
-            <h2>Robię super schody</h2>
+            <h2>Schody</h2>
+            <p></p>
             <!-- content -->
         </div>
         <div id="drzwi">
-            <h2>Robię super drzwi</h2>
+            <h2>Drzwi</h2>
+            <p>Montaż oraz poprawki zamontowanych drzwi.</p>
             <!-- content -->
         </div>
         <div id="balustrady">
