@@ -11,6 +11,8 @@ public class IPLoggerLine {
   private int id;
   private String ip;
   private String url;
+  private String source;
+  private int stopped;
   private Timestamp inserted;
 
   public IPLoggerLine(String ip, String url) {
@@ -51,5 +53,21 @@ public class IPLoggerLine {
   public void setInserted(Timestamp inserted) {
     this.inserted = inserted;
   }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public int getStopped() {
+        return stopped;
+    }
+
+    public void setStopped(int stopped) {
+        this.stopped = stopped;
+    }
 
 }

@@ -13,6 +13,8 @@ public class IPLoggerLineMapper implements RowMapper<IPLoggerLine> {
     line.setId(rs.getInt("id"));
     line.setIp(rs.getString("ip"));
     line.setUrl(rs.getString("url"));
+    line.setSource(rs.getString("source"));
+    line.setStopped(rs.getInt("stopped"));
     line.setInserted(rs.getTimestamp("inserted"));
     return line;
   }
