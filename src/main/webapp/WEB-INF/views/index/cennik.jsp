@@ -11,26 +11,26 @@
 <br/><p>Ceny nie zawierają podatku VAT 23%</p><br/>
 <div id="pricesDiv">Ładuje ... </div>
 <!-- BEGIN: Underscore Template Definition. -->
-    <script type="text/template" class="prices">
-      <table style="float:right; padding: 3px 3px 3px 3px">
-      <tr><th>Lp.</th><th>Usługa</th><th>Cena PLN</th><th>Jednostka</th></tr>
-        <@_.each(json, function(item, iter){ @>
-        <tr>
-            <td><@=iter+1@>)</td>
-            <td><@=item.service@></td>
-            <td>
-                <@if(item.priceMin > 0){@>
-                 <@=item.priceMin@>
-                 <@='-'@>
-                 <@}@>
-                <@=item.priceMax@>
-            </td>
-            <td><@ if(item.unit === 'metr^2') @>
-                <@='&nbsp;metr<sup>2</sup>'@>
-                <@ else @>
-                <@=item.unit@></td>
-        </tr>
-        <@});@>
-      </table>
-    </script>
-    <!-- END: Underscore Template Definition. -->
+<script type="text/template" class="prices">
+  <table id="pricesTable" style="float:right; padding: 3px 3px 3px 3px">
+  <tr><th>Lp.</th><th>Usługa</th><th>Cena PLN</th><th>Jednostka</th></tr>
+    <@_.each(json, function(item, iter){ @>
+    <tr>
+        <td><@=iter+1@>)</td>
+        <td><@=item.service@></td>
+        <td>
+            <@if(item.priceMin > 0){@>
+             <@=item.priceMin@>
+             <@='-'@>
+             <@}@>
+            <@=item.priceMax@>
+        </td>
+        <td><@ if(item.unit === 'metr^2') @>
+            <@='&nbsp;metr<sup>2</sup>'@>
+            <@ else @>
+            <@=item.unit@></td>
+    </tr>
+    <@});@>
+  </table>
+</script>
+<!-- END: Underscore Template Definition. -->

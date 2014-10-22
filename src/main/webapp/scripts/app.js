@@ -7,14 +7,60 @@ var app = (function f() {
         return str;
     };
     var offset = new Date().getTimezoneOffset();
-    offset = ((offset < 0 ? 'p' : 'm') + // Note the reversed sign!
+    offset = ((offset < 0 ? '+' : '-') + // Note the reversed sign!
             pad(parseInt(Math.abs(offset / 60)), 2) +
             pad(Math.abs(offset % 60), 2))
-    
     return {
-        getTimezoneOffset: offset
+        getTimezoneOffset: offset,
+        getTimezoneOffsetURIEncoded: encodeURIComponent(offset),
+        getTZOMinutesURIEncoded: encodeURIComponent(new Date().getTimezoneOffset())
     }
 })();
+
+$(document).ready(function() {
+    $('#cookiesLegalNoteCloser').closeIt();
+    $('#tab-container').easytabs();
+    $('#topLeftImages').innerfade(
+            {
+                animationtype: 'slide',
+                speed: 1500,
+                timeout: 6000
+            });
+    $('#news').innerfade({
+        animationtype: 'slide',
+        speed: 750,
+        timeout: 6000,
+        type: 'sequence',
+        containerheight: '3em'
+    });
+});
+
+function getViewport() {
+    //http://stackoverflow.com/questions/1766861/find-the-exact-height-and-width-of-the-viewport-in-a-cross-browser-way-no-proto
+    var viewPortWidth;
+    var viewPortHeight;
+
+    // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+    if (typeof window.innerWidth != 'undefined') {
+        viewPortWidth = window.innerWidth,
+                viewPortHeight = window.innerHeight
+    }
+
+// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+    else if (typeof document.documentElement != 'undefined'
+            && typeof document.documentElement.clientWidth !=
+            'undefined' && document.documentElement.clientWidth != 0) {
+        viewPortWidth = document.documentElement.clientWidth,
+                viewPortHeight = document.documentElement.clientHeight
+    }
+
+    // older versions of IE
+    else {
+        viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
+                viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
+    }
+    return [viewPortWidth, viewPortHeight];
+}
 
 $.widget("lw.closeIt", {
     options: {
@@ -96,7 +142,7 @@ $.widget("lw.getJson", {
     get: function() {
         this.options.ajaxloader.css('visibility', 'visible');
         var jqxhr = $.ajax({
-            url: this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTimezoneOffset,
+            url: this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTZOMinutesURIEncoded,
             type: 'GET',
             timeout: 4000
         }).then(
@@ -129,7 +175,6 @@ $.widget("lw.getJsonOnLoad", {
         ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + 'resources/images/ajax-loader.gif', style: "visibility:hidden"})
     },
     _create: function() {
-        console.log('running');
         _.templateSettings = {
             interpolate: /\<\@\=(.+?)\@\>/gim,
             evaluate: /\<\@([\s\S]+?)\@\>/gim,
@@ -140,12 +185,10 @@ $.widget("lw.getJsonOnLoad", {
             this.options.template = _.template(templateHtml.html());
         }
         this.element.prepend(this.options.ajaxloader);
-        console.log(this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTimezoneOffset);
+        console.log(this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTZOMinutesURIEncoded);
         this.get();
     },
     _setOption: function(key, value) {
-        console.log('running');
-
         this.options[key] = value;
         this._update();
     },
@@ -156,7 +199,7 @@ $.widget("lw.getJsonOnLoad", {
     get: function() {
         this.options.ajaxloader.css('visibility', 'visible');
         var jqxhr = $.ajax({
-            url: this.options['app_context'] + '' + this.options.url + '?tzo="' + app.getTimezoneOffset +'"',
+            url: this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTZOMinutesURIEncoded,
             type: 'GET',
             timeout: 4000
         }).then(
@@ -172,6 +215,48 @@ $.widget("lw.getJsonOnLoad", {
         jqxhr.always($.proxy(function() {
             this.options.ajaxloader.css('visibility', 'hidden');
         }, this));
+    },
+    _destroy: function() {
+        this.element.unbind();
+        this.element.remove(this.options.ajaxloader);
+    }
+});
+
+$.widget("lw.row", {
+    options: {
+    },
+    _create: function() {
+        console.log(this.element.html())
+    },
+    _setOption: function(key, value) {
+    },
+    _update: function() {
+    },
+    getViewport: function getViewport() {
+        //http://stackoverflow.com/questions/1766861/find-the-exact-height-and-width-of-the-viewport-in-a-cross-browser-way-no-proto
+        var viewPortWidth;
+        var viewPortHeight;
+
+        // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+        if (typeof window.innerWidth != 'undefined') {
+            viewPortWidth = window.innerWidth,
+                    viewPortHeight = window.innerHeight
+        }
+
+// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+        else if (typeof document.documentElement != 'undefined'
+                && typeof document.documentElement.clientWidth !=
+                'undefined' && document.documentElement.clientWidth != 0) {
+            viewPortWidth = document.documentElement.clientWidth,
+                    viewPortHeight = document.documentElement.clientHeight
+        }
+
+        // older versions of IE
+        else {
+            viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
+                    viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
+        }
+        return [viewPortWidth, viewPortHeight];
     },
     _destroy: function() {
         this.element.unbind();

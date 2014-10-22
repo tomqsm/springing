@@ -1,5 +1,10 @@
 @import url("mobile.css") handheld; 
 @import url("mobile.css") only screen and (max-device-width:480px);
+.fb_like {  
+  overflow: hidden;
+  width: 100px;
+  float: right;
+}
 body { 
     background-color: gray;
     background: url(../images/bcg.gif);

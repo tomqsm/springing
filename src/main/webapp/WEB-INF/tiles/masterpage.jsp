@@ -17,6 +17,7 @@
 <s:url var="underscore" value="/resources/scripts/lib/underscore.js"  />
 <s:url var="app_min" value="/resources/scripts/app.js"  />
 <s:url var="widgets" value="/resources/scripts/widgets.js"  />
+<s:url var="social" value="/resources/scripts/index/social.js"  />
 <t:importAttribute name="pagejs" toName="pagejs" scope="request"/>
 <t:importAttribute name="title" toName="pageTitle" scope="request"/>
 <t:importAttribute name="menuList" toName="menuList" scope="request"/>
@@ -25,8 +26,9 @@
     <c:set var="pageTitle" value="${f:psvParser(menuList,breadcrumbList.get(fn:length(breadcrumbList)-1),'BREADCRUMB_DISPLAY')}" scope="request"/>
 </c:if>
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:fb="http://ogp.me/ns/fb#">
     <head>
+        <title>${pageTitle}</title>
         <link rel="shortcut icon" href="<s:url value="/resources/favicon.ico"/>" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--<meta http-equiv="X-UA-Compatible" content="IE=8" />-->
@@ -44,25 +46,10 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
         <script src="<s:url value="/resources/scripts/lib/hashchange.js"/>"></script>
         <script src="<s:url value="/resources/scripts/lib/jquery.easytabs.min.js"/>"></script>
-        <title>${pageTitle}</title>
+        <script src="${social}"/>"></script>
         <script>
             var app_context = '<s:url value="/"/>';
             $(document).ready(function() {
-                $('#cookiesLegalNoteCloser').closeIt();
-                $('#tab-container').easytabs();
-                $('#topLeftImages').innerfade(
-                        {
-                            animationtype: 'slide',
-                            speed: 1500,
-                            timeout: 6000
-                        });
-                $('#news').innerfade({
-                    animationtype: 'slide',
-                    speed: 750,
-                    timeout: 6000,
-                    type: 'sequence',
-                    containerheight: '3em'
-                });
                 $('#menu').menuSelector({selected: '${f:psvParser(menuList,breadcrumbList.get(fn:length(breadcrumbList)-1),'ID')}'});
             });
         </script>
@@ -99,6 +86,11 @@
                     <li>Schody i balustrady wewnątrz pomieszczeń.</li>
                     <li>Także balustrady wmocowane w drawno w schodach.</li>
                 </ul>
+                <!--<div class="fb-like" data-href="https://www.facebook.com/lukasfloor" data-width="100px" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>-->
+                <div class="fb_like">
+                    <fb:like href="https://www.facebook.com/lukasfloor" layout="button_count" show_faces="false" share="false"></fb:like>
+                </div>
+                <!--<div class="fb-like-box" data-href="https://www.facebook.com/lukasfloor" data-width="292" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>-->
             </div>
             <a href="<s:url value="/"/>${'en' eq pageContext.response.locale ? '?lang=en' : ''}">
                 <img class="" style="position: relative; top: 100px; z-index: 10;" src="<s:url value="/resources/images/logo.png"/>"/>

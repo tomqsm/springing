@@ -4,13 +4,12 @@ import biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcPriceLineDao;
 import biz.letsweb.lukasfloorspring.dataaccess.dao.JdbcUsersDao;
 import biz.letsweb.lukasfloorspring.dataaccess.model.PriceLine;
 import biz.letsweb.lukasfloorspring.dataaccess.model.User;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 import java.util.concurrent.Callable;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,31 +152,15 @@ public class IndexController {
   public @ResponseBody
   List<PriceLine> ajaxPrices(@RequestParam("tzo") String tzo, ModelMap model) {
     System.out.println(tzo);
-    final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
-    final SimpleDateFormat sdf = new SimpleDateFormat(DATEFORMAT);
-    sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-    final String utcTime = sdf.format(new Date());
+    int offset = Integer.parseInt(tzo);
+    int offsetHrs = offset / 60;
+    int offsetMins = offset / 60 / 60 % 60;
 
-    Calendar c = Calendar.getInstance();
-    System.out.println("current: " + c.getTime());
+    DateTime dateTimeUtc = new DateTime(DateTimeZone.UTC);
+    System.out.println(dateTimeUtc);
+    DateTime localTime = dateTimeUtc.minusHours(offsetHrs).minusMinutes(offsetMins);
+    System.out.println(localTime);
 
-    TimeZone z = c.getTimeZone();
-    int offset = z.getRawOffset();
-    if (z.inDaylightTime(new Date())) {
-      offset = offset + z.getDSTSavings();
-    }
-    int offsetHrs = offset / 1000 / 60 / 60;
-    int offsetMins = offset / 1000 / 60 % 60;
-
-    System.out.println("offset: " + offsetHrs);
-    System.out.println("offset: " + offsetMins);
-
-    c.add(Calendar.HOUR_OF_DAY, (-offsetHrs));
-    c.add(Calendar.MINUTE, (-offsetMins));
-
-    System.out.println("GMT Time: " + c.getTime());
-
-    logger.info("client timezoneOffset: {}", tzo);
     List<PriceLine> prices = pricesDao.findAll();
     return prices;
   }
