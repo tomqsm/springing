@@ -23,11 +23,11 @@ CREATE TABLE IPLOGS(
     stopped INT DEFAULT 0,
     inserted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-SELECT * FROM ( 
-    SELECT ROW_NUMBER() OVER() AS rownum, prices.* 
-    FROM prices 
-) AS tmp 
-WHERE rownum > 5 AND rownum <= 10;
+-- SELECT * FROM ( 
+--     SELECT ROW_NUMBER() OVER() AS rownum, prices.* 
+--     FROM prices 
+-- ) AS tmp 
+-- WHERE rownum > 5 AND rownum <= 10;
 
 insert into USERS values (DEFAULT, 'Łukasz', 'Dożak', DEFAULT);
 insert into prices values (DEFAULT, 'Czyszczenie podłogi', 'metr^2',DEFAULT, 14, DEFAULT);

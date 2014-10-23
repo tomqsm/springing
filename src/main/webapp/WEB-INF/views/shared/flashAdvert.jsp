@@ -5,10 +5,10 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <c:choose>
     <c:when test="${'en' eq pageContext.response.locale}">
-        <s:url var="flashAdvertUrl" value="/resources/flash/slogans_en.swf"  />
+        <s:url var="flashAdvertUrl" value="https://s3.eu-central-1.amazonaws.com/lksflr/lukasfloor/flash/slogans_en.swf"  />
     </c:when>
     <c:otherwise>
-        <s:url var="flashAdvertUrl" value="/resources/flash/slogans.swf"  />
+        <s:url var="flashAdvertUrl" value="https://s3.eu-central-1.amazonaws.com/lksflr/lukasfloor/flash/slogans.swf"  />
     </c:otherwise>
 </c:choose>
 <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="650" height="250" id="slogans" align="middle">

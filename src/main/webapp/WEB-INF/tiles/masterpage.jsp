@@ -45,7 +45,7 @@
         <script src="${jquery_innerfade}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
         <script src="<s:url value="/resources/scripts/lib/hashchange.js"/>"></script>
-        <script src="<s:url value="/resources/scripts/lib/jquery.easytabs.min.js"/>"></script>
+        <script src="https://s3.eu-central-1.amazonaws.com/lksflr/lukasfloor/scripts/jquery.easytabs.min.js"></script>
         <script src="${social}"/>"></script>
         <script>
             var app_context = '<s:url value="/"/>';
@@ -93,7 +93,7 @@
                 <!--<div class="fb-like-box" data-href="https://www.facebook.com/lukasfloor" data-width="292" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>-->
             </div>
             <a href="<s:url value="/"/>${'en' eq pageContext.response.locale ? '?lang=en' : ''}">
-                <img class="" style="position: relative; top: 100px; z-index: 10;" src="<s:url value="/resources/images/logo.png"/>"/>
+                <img class="" style="position: relative; top: 100px; z-index: 10;" src="https://s3.eu-central-1.amazonaws.com/lksflr/lukasfloor/images/logo.png"/>
             </a>
         </div>
         <div class="container width950" style="position: relative; top: -90px;">
