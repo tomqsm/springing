@@ -32,10 +32,10 @@
         <link rel="shortcut icon" href="<s:url value="/resources/favicon.ico"/>" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--<meta http-equiv="X-UA-Compatible" content="IE=8" />-->
-        <meta name="description" content="Cyklinowanie, podłogi, balustrady, schody, stolarka.">
-        <meta name="keywords" content="Cyklinowanie, podłogi, balustrady, schody, stolarka.">
-        <meta name="author" content="Łukasz Dożak">
         <META name="ROBOTS" content="INDEX, FOLLOW">
+        <meta name="description" content="Parkieciarstwo, odnawianie podłóg - woj. ślaskie. Z nami stara podłoga będzie jak nowa, a nowa, którą instalujemy będzie trwać i cieszyć. Zamów wycenę i robotę online." /> 
+        <meta name="keywords" content="podłoga,podłogi,cyklinowanie,podłoga Bielsko-Biała,podłoga Bielsko,cyklinowanie Bielsko Biała,cyklinowanie Bielsko,schody, drzwi, balustrady,cyklinowanie podlogi Bielsko,cyklinowanie Bielsko Biala" />
+        <meta name="author" content="Łukasz Dożak" />
         <link rel="stylesheet" type="text/css" media="screen" href="<s:url value="/resources/styles/reset.css"/>" />
         <link rel="stylesheet" type="text/css" media="screen" href="<s:url value="/resources/styles/standard.css"/>" />
         <link rel="stylesheet" type="text/css" media="screen" href="${localised_css_url}" />
@@ -45,7 +45,7 @@
         <script src="${jquery_innerfade}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
         <script src="<s:url value="/resources/scripts/lib/hashchange.js"/>"></script>
-        <script src="https://s3.eu-central-1.amazonaws.com/lksflr/lukasfloor/scripts/jquery.easytabs.min.js"></script>
+        <script src="https://s3.eu-central-1.amazonaws.com/lukasfloor/scripts/jquery.easytabs.min.js"></script>
         <script src="${social}"/>"></script>
         <script>
             var app_context = '<s:url value="/"/>';
@@ -60,7 +60,7 @@
         </c:if>
     </head>
     <body>
-        <div class="container cookiesAlert">Strona lukasfloor.com używa plików 'cookies' aby 1) umożliwić zmianę języka strony 2) tworzyć statystki odwiedzin 3) umożliwić kontinuum konwersacji z serwerem (tworzyć sesję). Jeśli nie zgadzasz się na używanie 'cookies' prosimy je zablokować w ustawieniach przeglądarki.<br/><a href="#">więcej informacji</a>
+        <div class="container cookiesAlert">Strona lukasfloor.com używa plików 'cookies' aby 1) umożliwić zmianę języka strony 2) tworzyć statystki odwiedzin 3) umożliwić kontinuum konwersacji z serwerem (tworzyć sesję). Jeśli nie zgadzasz się na używanie 'cookies' prosimy je zablokować w ustawieniach przeglądarki.<br/><a href="http://pl.wikipedia.org/wiki/HTTP_cookie">więcej informacji</a>
             <a id="cookiesLegalNoteCloser" href="#"><span style="float: right; padding: 5px; margin-top: 5px;" class="close border">zamknij</span></a>
         </div>
         <div class="container width950" style="height: 300px;"> 
@@ -93,7 +93,7 @@
                 <!--<div class="fb-like-box" data-href="https://www.facebook.com/lukasfloor" data-width="292" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>-->
             </div>
             <a href="<s:url value="/"/>${'en' eq pageContext.response.locale ? '?lang=en' : ''}">
-                <img class="" style="position: relative; top: 100px; z-index: 10;" src="https://s3.eu-central-1.amazonaws.com/lksflr/lukasfloor/images/logo.png"/>
+                <img class="" style="position: relative; top: 100px; z-index: 10;" src="https://s3.eu-central-1.amazonaws.com/lukasfloor/images/logo.png"/>
             </a>
         </div>
         <div class="container width950" style="position: relative; top: -90px;">
