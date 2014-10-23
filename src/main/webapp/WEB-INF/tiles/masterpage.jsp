@@ -60,7 +60,7 @@
         </c:if>
     </head>
     <body>
-        <div class="container cookiesAlert">Strona lukasfloor.com używa plików 'cookies' aby 1) umożliwić zmianę języka strony 2) tworzyć statystki odwiedzin 3) umożliwić kontinuum konwersacji z serwerem (tworzyć sesję). Jeśli nie zgadzasz się na używanie 'cookies' prosimy je zablokować w ustawieniach przeglądarki.<br/><a href="http://pl.wikipedia.org/wiki/HTTP_cookie">więcej informacji</a>
+        <div class="container cookiesAlert">Strona lukasfloor.com używa plików 'cookies' aby 1) umożliwić zmianę języka strony 2) tworzyć statystki odwiedzin 3) umożliwić kontinuum konwersacji z serwerem (tworzyć sesję). Jeśli nie zgadzasz się na używanie 'cookies' prosimy je zablokować w ustawieniach przeglądarki.<br/><a href="http://pl.wikipedia.org/wiki/HTTP_cookie" target="_blank">więcej informacji</a>
             <a id="cookiesLegalNoteCloser" href="#"><span style="float: right; padding: 5px; margin-top: 5px;" class="close border">zamknij</span></a>
         </div>
         <div class="container width950" style="height: 300px;"> 
