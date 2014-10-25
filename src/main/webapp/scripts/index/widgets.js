@@ -3,19 +3,20 @@ $.widget("lw.closeIt", {
         isCookiesOn: false
     },
     _create: function() {
+        if ($.cookie('cookies') === 'ok') return;
+        var cookiesAlertContainer = this.element.parent('.cookiesAlert');
         if (this.isCookiesOn()) {
             if ($.cookie('cookies') !== 'ok') {
-                this.element.parent('.cookiesAlert').show();
+                cookiesAlertContainer.show();
                 this.element.on('click', $.proxy(function() {
                     $.cookie('cookies', 'ok', {expires: 30, path: '/'});
                     //Find the parent element of each paragraph with a class "cookiesAlert"
-                    this.element.parent('.cookiesAlert').hide();
+                    cookiesAlertContainer.hide();
                 }, this));
             }
         } else {
-            this.element.parent('.cookiesAlert').hide();
+            cookiesAlertContainer.hide();
         }
-        console.log('initialised')
     },
     _destroy: function() {
         this.element.off();
