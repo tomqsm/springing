@@ -136,8 +136,7 @@ public class IndexController {
   @Async
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(value = "/ajax", method = {RequestMethod.GET, RequestMethod.HEAD}, headers = "x-requested-with=XMLHttpRequest")
-  public @ResponseBody
-  AjaxModel ajax(ModelMap model) throws InterruptedException {
+  public @ResponseBody AjaxModel ajax(ModelMap model) throws InterruptedException {
     User user = usersDao.findUserById(1);
     AjaxModel am = new AjaxModel();
     // Thread.sleep(3000);
@@ -149,8 +148,7 @@ public class IndexController {
   @Async
   @ResponseStatus(HttpStatus.OK)
   @RequestMapping(value = "/ajax/prices", method = {RequestMethod.GET, RequestMethod.HEAD}, headers = "x-requested-with=XMLHttpRequest")
-  public @ResponseBody
-  List<PriceLine> ajaxPrices(@RequestParam("tzo") String tzo, ModelMap model) {
+  public @ResponseBody List<PriceLine> ajaxPrices(@RequestParam("tzo") String tzo, ModelMap model) {
     System.out.println(tzo);
     int offset = Integer.parseInt(tzo);
     int offsetHrs = offset / 60;
@@ -203,8 +201,7 @@ public class IndexController {
   // tutorial
   // https://github.com/spring-projects/spring-mvc-showcase/tree/master/src/main/java/org/springframework/samples/mvc/async
   @RequestMapping("/custom-timeout-handling")
-  public @ResponseBody
-  WebAsyncTask<String> callableWithCustomTimeoutHandling() {
+  public @ResponseBody WebAsyncTask<String> callableWithCustomTimeoutHandling() {
 
     Callable<String> callable = new Callable<String>() {
       @Override

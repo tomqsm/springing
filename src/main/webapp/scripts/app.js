@@ -1,4 +1,29 @@
-var app = (function f() {
+var app = (function f($, doc) {
+    $(doc).on("focus", "#menu li.selected", function() {
+        console.log('initialise something on focus');
+    });
+    $(doc).ready(function() {
+        $('#menu').menuSelector(
+                {
+                    selected: appInit['currentMenuItem']
+                });
+        $('#cookiesLegalNoteCloser').closeIt();
+        $('#tab-container').easytabs();
+        $('#topLeftImages').innerfade(
+                {
+                    animationtype: 'slide',
+                    speed: 1500,
+                    timeout: 6000
+                });
+        $('#news').innerfade({
+            animationtype: 'slide',
+            speed: 750,
+            timeout: 6000,
+            type: 'sequence',
+            containerheight: '3em'
+        });
+        viewport = [1, 2]
+    });
     var pad = function pad(number, length) {
         var str = "" + number;
         while (str.length < length) {
@@ -6,260 +31,37 @@ var app = (function f() {
         }
         return str;
     };
-    var offset = new Date().getTimezoneOffset();
-    offset = ((offset < 0 ? '+' : '-') + // Note the reversed sign!
-            pad(parseInt(Math.abs(offset / 60)), 2) +
-            pad(Math.abs(offset % 60), 2))
-    return {
-        getTimezoneOffset: offset,
-        getTimezoneOffsetURIEncoded: encodeURIComponent(offset),
-        getTZOMinutesURIEncoded: encodeURIComponent(new Date().getTimezoneOffset())
+    function calculateTimeZoneOffset() {
+        var offset = new Date().getTimezoneOffset();
+        return (pad(parseInt(Math.abs(offset / 60)), 2) + pad(Math.abs(offset % 60), 2))
     }
-})();
-
-$(document).ready(function() {
-    $('#cookiesLegalNoteCloser').closeIt();
-    $('#tab-container').easytabs();
-    $('#topLeftImages').innerfade(
-            {
-                animationtype: 'slide',
-                speed: 1500,
-                timeout: 6000
-            });
-    $('#news').innerfade({
-        animationtype: 'slide',
-        speed: 750,
-        timeout: 6000,
-        type: 'sequence',
-        containerheight: '3em'
-    });
-});
-
-function getViewport() {
-    //http://stackoverflow.com/questions/1766861/find-the-exact-height-and-width-of-the-viewport-in-a-cross-browser-way-no-proto
-    var viewPortWidth;
-    var viewPortHeight;
-
-    // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
-    if (typeof window.innerWidth != 'undefined') {
-        viewPortWidth = window.innerWidth,
-                viewPortHeight = window.innerHeight
-    }
-
-// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
-    else if (typeof document.documentElement != 'undefined'
-            && typeof document.documentElement.clientWidth !=
-            'undefined' && document.documentElement.clientWidth != 0) {
-        viewPortWidth = document.documentElement.clientWidth,
-                viewPortHeight = document.documentElement.clientHeight
-    }
-
-    // older versions of IE
-    else {
-        viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
-                viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
-    }
-    return [viewPortWidth, viewPortHeight];
-}
-
-$.widget("lw.closeIt", {
-    options: {
-        isCookiesOn: false
-    },
-    _create: function() {
-        if (this.isCookiesOn()) {
-            if ($.cookie('cookies') !== 'ok') {
-                this.element.parent('.cookiesAlert').show();
-                this.element.bind('click', $.proxy(function() {
-                    $.cookie('cookies', 'ok', {expires: 30, path: '/'});
-                    //Find the parent element of each paragraph with a class "cookiesAlert"
-                    this.element.parent('.cookiesAlert').hide();
-                }, this));
-            }
-        } else {
-            this.element.parent('.cookiesAlert').hide();
-        }
-
-    },
-    _destroy: function() {
-        this.element.unbind('click');
-    },
-    isCookiesOn: function() {
-        var date = new Date();
-        date.setTime(date.getTime() + (2000)); //set expiry to seconds
-        $.cookie('cookieTest', 'ok', {expires: date, path: '/'});
-        if ($.cookie('cookieTest') === 'ok') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-});
-$.widget("lw.menuSelector", {
-    options: {
-        selected: $.noop
-    },
-    _create: function() {
-        console.log(this.options.selected)
-        $('#menu').find('#' + this.options.selected).parent().addClass('selected');
-
-    }
-});
-$.widget("lw.getJson", {
-    options: {
-        templateEl: $.noop,
-        handleData: $.noop,
-        template: $.noop,
-        app_context: app_context,
-        url: 'ajax',
-        data: '',
-        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + 'resources/images/ajax-loader.gif', style: "visibility:hidden"})
-    },
-    _create: function() {
-        _.templateSettings = {
-            interpolate: /\<\@\=(.+?)\@\>/gim,
-            evaluate: /\<\@([\s\S]+?)\@\>/gim,
-            escape: /\<\@\-(.+?)\@\>/gim
-        };
-        if (this.options['templateEl'] !== $.noop) {
-            var templateHtml = this.options['templateEl'];
-            this.options.template = _.template(templateHtml.html());
-        }
-        this.element.bind('click', $.proxy(function() {
-            this.get();
-        }, this));
-
-        this.element.prepend(this.options.ajaxloader);
-    },
-    _setOption: function(key, value) {
-        this.options[key] = value;
-        this._update();
-    },
-    _update: function() {
-        this.options.el = this.element;
-        this.options.handleData(this.options.data, this.options);
-    },
-    get: function() {
-        this.options.ajaxloader.css('visibility', 'visible');
-        var jqxhr = $.ajax({
-            url: this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTZOMinutesURIEncoded,
-            type: 'GET',
-            timeout: 4000
-        }).then(
-                $.proxy(function(data) {
-                    this._setOption('data', data);
-                    return data;
-                }, this),
-                $.proxy(function(data) {
-                    this.element.text(' failed ' + data.statusText);
-                }, this),
-                $.proxy(function() {
-                }), this);
-        jqxhr.always($.proxy(function() {
-            this.options.ajaxloader.css('visibility', 'hidden');
-        }, this));
-    },
-    _destroy: function() {
-        this.element.unbind();
-        this.element.remove(this.options.ajaxloader);
-    }
-});
-$.widget("lw.getJsonOnLoad", {
-    options: {
-        templateEl: $.noop,
-        handleData: $.noop,
-        template: $.noop,
-        app_context: app_context,
-        url: 'ajax',
-        data: '',
-        ajaxloader: $('<img/>', {id: "ajaxloader", src: app_context + 'resources/images/ajax-loader.gif', style: "visibility:hidden"})
-    },
-    _create: function() {
-        _.templateSettings = {
-            interpolate: /\<\@\=(.+?)\@\>/gim,
-            evaluate: /\<\@([\s\S]+?)\@\>/gim,
-            escape: /\<\@\-(.+?)\@\>/gim
-        };
-        if (this.options['templateEl'] !== $.noop) {
-            var templateHtml = this.options['templateEl'];
-            this.options.template = _.template(templateHtml.html());
-        }
-        this.element.prepend(this.options.ajaxloader);
-        console.log(this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTZOMinutesURIEncoded);
-        this.get();
-    },
-    _setOption: function(key, value) {
-        this.options[key] = value;
-        this._update();
-    },
-    _update: function() {
-        this.options.el = this.element;
-        this.options.handleData(this.options.data, this.options);
-    },
-    get: function() {
-        this.options.ajaxloader.css('visibility', 'visible');
-        var jqxhr = $.ajax({
-            url: this.options['app_context'] + '' + this.options.url + '?tzo=' + app.getTZOMinutesURIEncoded,
-            type: 'GET',
-            timeout: 4000
-        }).then(
-                $.proxy(function(data) {
-                    this._setOption('data', data);
-                    return data;
-                }, this),
-                $.proxy(function(data) {
-                    this.element.text(' failed ' + data.statusText);
-                }, this),
-                $.proxy(function() {
-                }), this);
-        jqxhr.always($.proxy(function() {
-            this.options.ajaxloader.css('visibility', 'hidden');
-        }, this));
-    },
-    _destroy: function() {
-        this.element.unbind();
-        this.element.remove(this.options.ajaxloader);
-    }
-});
-
-$.widget("lw.row", {
-    options: {
-    },
-    _create: function() {
-        console.log(this.element.html())
-    },
-    _setOption: function(key, value) {
-    },
-    _update: function() {
-    },
-    getViewport: function getViewport() {
+    function getViewport() {
         //http://stackoverflow.com/questions/1766861/find-the-exact-height-and-width-of-the-viewport-in-a-cross-browser-way-no-proto
-        var viewPortWidth;
-        var viewPortHeight;
-
+        var viewPortWidth, viewPortHeight;
         // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
-        if (typeof window.innerWidth != 'undefined') {
+        if (typeof window.innerWidth !== 'undefined') {
             viewPortWidth = window.innerWidth,
-                    viewPortHeight = window.innerHeight
+                    viewPortHeight = window.innerHeight;
         }
-
-// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
-        else if (typeof document.documentElement != 'undefined'
-                && typeof document.documentElement.clientWidth !=
-                'undefined' && document.documentElement.clientWidth != 0) {
-            viewPortWidth = document.documentElement.clientWidth,
-                    viewPortHeight = document.documentElement.clientHeight
+        // IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+        else if (typeof doc.documentElement !== 'undefined'
+                && typeof doc.documentElement.clientWidth !==
+                'undefined' && doc.documentElement.clientWidth !== 0) {
+            viewPortWidth = doc.documentElement.clientWidth,
+                    viewPortHeight = doc.documentElement.clientHeight;
         }
-
         // older versions of IE
         else {
-            viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
-                    viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
+            viewPortWidth = doc.getElementsByTagName('body')[0].clientWidth,
+                    viewPortHeight = doc.getElementsByTagName('body')[0].clientHeight;
         }
         return [viewPortWidth, viewPortHeight];
-    },
-    _destroy: function() {
-        this.element.unbind();
-        this.element.remove(this.options.ajaxloader);
     }
-});
+
+    return {
+        getTimezoneOffset: calculateTimeZoneOffset(),
+        getTimezoneOffsetURIEncoded: encodeURIComponent(calculateTimeZoneOffset()),
+        getTZOMinutesURIEncoded: encodeURIComponent(calculateTimeZoneOffset()),
+        getViewport: getViewport
+    }
+})($, document);

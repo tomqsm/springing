@@ -58,7 +58,7 @@
     </definition>
     <definition extends="masterpage" name="firma">
         <!--here you can add your own page specific scripts-->
-        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="pagejs" value="" />
         <put-attribute name="body" value="/WEB-INF/views/index/firma.jsp" />
         <put-list-attribute name="breadcrumbList" inherit="true">
             <add-attribute value="3"/>
@@ -68,13 +68,13 @@
     <definition extends="masterpage" name="404">
         <put-attribute name="title" value="Zasób nie znaleziony." type="string"  />
         <!--here you can add your own page specific scripts-->
-        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="pagejs" value="" />
         <put-attribute name="body" value="/WEB-INF/views/errors/404.jsp" />
     </definition>
     <definition extends="masterpage" name="500">
         <put-attribute name="title" value="Błąd 500." type="string"  />
         <!--here you can add your own page specific scripts-->
-        <put-attribute name="pagejs" value="resources/pages/index/page.js" />
+        <put-attribute name="pagejs" value="" />
         <put-attribute name="body" value="/WEB-INF/views/errors/500.jsp" />
     </definition>
     <definition extends="masterpage" name="appInfo">

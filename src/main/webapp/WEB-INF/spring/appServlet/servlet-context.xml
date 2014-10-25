@@ -140,12 +140,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
         <beans:property name="ignoreResourceNotFound" value="true"/>
     </beans:bean>
    
-    <!--    <beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <beans:property name="exceptionMappings">
-            <beans:props>
-                <beans:prop key="java.lang.Throwable">error</beans:prop>
-            </beans:props>        
-        </beans:property>
-    </beans:bean>-->
+    <beans:bean id="exceptionResolver" class="biz.letsweb.lukasfloorspring.ApplicationExceptionHandler">
+    </beans:bean>
 
 </beans:beans>
