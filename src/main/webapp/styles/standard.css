@@ -80,6 +80,7 @@ a {
 }
 .menu li:hover{
     background-color: background;
+    cursor: pointer; cursor: hand;
 }
 .selected{
     background-color: background;
